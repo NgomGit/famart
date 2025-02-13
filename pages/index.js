@@ -15,7 +15,7 @@ import FeatureBoxSection from "../components/partials/home/featurebox-section";
 import PromoSection from "../components/partials/home/promo-section";
 import ProductWidgetContainer from "../components/partials/home/product-widget-container";
 import BlogSection from '../components/partials/home/blog-section';
-import BrandSection from '../components/partials/home/brand-section';
+// import BrandSection from '../components/partials/home/brand-section';
 
 function Home () {
     const { data, loading, error } = useQuery( GET_HOME_DATA, { variables: { productsCount: 4, postsCount: 2 } } );
@@ -62,7 +62,7 @@ function Home () {
 
                 <BlogSection blog={ blog } loading={ loading } />
 
-                <BrandSection />
+                {/* <BrandSection /> */}
 
             </main>
 
