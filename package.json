@@ -3,10 +3,10 @@
   "version": "2.1.0",
   "private": true,
   "scripts": {
-    "dev": "next",
-    "build": "next build",
-    "export": "next export",
-    "start": "next start"
+    "dev": "NODE_OPTIONS=--openssl-legacy-provider next",
+    "build": "NODE_OPTIONS=--openssl-legacy-provider next build",
+    "export": "NODE_OPTIONS=--openssl-legacy-provider next export",
+    "start": "NODE_OPTIONS=--openssl-legacy-provider next start"
   },
   "dependencies": {
     "@apollo/react-hooks": "^4.0.0",
