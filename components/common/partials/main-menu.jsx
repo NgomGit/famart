@@ -21,13 +21,8 @@ function MainMenu ( { router } ) {
                         <ALink href="/">Home</ALink>
                     </li>
                     <li className={ pathname.startsWith( '/shop' ) ? 'active' : '' }>
-<<<<<<< HEAD
                         <ALink href="/shop" >Produits</ALink>
                         {/* <div className="megamenu megamenu-fixed-width megamenu-3cols">
-=======
-                        <ALink href="/shop" className="sf-with-ul">Categories</ALink>
-                        <div className="megamenu megamenu-fixed-width megamenu-3cols">
->>>>>>> 8f2655e415c8c4a73dc793034924a8a4d368e5f4
                             <div className="row">
                                 <div className="col-lg-4">
                                     <ALink href="#" className="nolink">VARIATION 1</ALink>
@@ -71,7 +66,6 @@ function MainMenu ( { router } ) {
                                     </div>
                                 </div>
                             </div>
-<<<<<<< HEAD
                         </div> */}
                     </li>
                     <li className={ pathname.startsWith( '/pages/wishlist' ) ? 'active' : '' }>
@@ -87,11 +81,6 @@ function MainMenu ( { router } ) {
                         <ALink href="/pages/login" >Se connecter</ALink>
                     </li>
                     {/* <li className={ pathname.startsWith( '/product' ) ? 'active' : '' }>
-=======
-                        </div>
-                    </li>
-                    <li className={ pathname.startsWith( '/product' ) ? 'active' : '' }>
->>>>>>> 8f2655e415c8c4a73dc793034924a8a4d368e5f4
                         <ALink href="/product/default/men-glasses" className="sf-with-ul">Products</ALink>
                         <div className="megamenu megamenu-fixed-width">
                             <div className="row">
@@ -143,13 +132,8 @@ function MainMenu ( { router } ) {
                                 </div>
                             </div>
                         </div>
-<<<<<<< HEAD
                     </li> */}
                     {/* <li className={ isOtherPage() ? 'active' : '' }>
-=======
-                    </li>
-                    <li className={ isOtherPage() ? 'active' : '' }>
->>>>>>> 8f2655e415c8c4a73dc793034924a8a4d368e5f4
                         <ALink href="#" className="sf-with-ul">Pages</ALink>
                         <ul>
                             {
@@ -160,11 +144,7 @@ function MainMenu ( { router } ) {
                                 ) )
                             }
                         </ul>
-<<<<<<< HEAD
                     </li> */}
-=======
-                    </li>
->>>>>>> 8f2655e415c8c4a73dc793034924a8a4d368e5f4
                     <li className={ `${ pathname === '/pages/blog' ? 'active' : '' } blog-menu` }>
                         <ALink href="/pages/blog">Blog</ALink>
                     </li>

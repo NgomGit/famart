@@ -14,13 +14,8 @@ export default function TopRatedCollection(props) {
         <>
             <Reveal keyframes={fadeIn} delay={200} duration={1000} triggerOnce>
                 <>
-<<<<<<< HEAD
                     <h2 className="section-title text-center">Nos produits récents</h2>
                     <p className="section-description text-center">Découvrer nos nouveautés</p>
-=======
-                    <h2 className="section-title text-center">Top Rated Products</h2>
-                    <p className="section-description text-center">Only the top rated products added recently in our catalog</p>
->>>>>>> 8f2655e415c8c4a73dc793034924a8a4d368e5f4
                     <OwlCarousel adClass="owl-theme pb-2 mb-2" options={productSlider}>
                         {
                             loading ?

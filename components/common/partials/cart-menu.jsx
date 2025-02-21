@@ -92,11 +92,7 @@ function CartMenu(props) {
 
                                                 <figure className="product-image-container">
                                                     <ALink href={`/product/default/${cart.slug}`} className="product-image">
-<<<<<<< HEAD
                                                         <img src={cart.pictures[0].url} width="78" height="78" alt="product" />
-=======
-                                                        <img src={process.env.NEXT_PUBLIC_ASSET_URI + cart.small_pictures[0].url} width="78" height="78" alt="product" />
->>>>>>> 8f2655e415c8c4a73dc793034924a8a4d368e5f4
                                                     </ALink>
                                                     <a href="#" className="btn-remove icon-cancel" title="Remove Product" onClick={e => { removeFromCart(e, cart); }}></a>
                                                 </figure>
@@ -112,20 +108,12 @@ function CartMenu(props) {
                                 </div>
 
                                 <div className="dropdown-cart-action">
-<<<<<<< HEAD
                                     <ALink href="/pages/cart" className="btn btn-gray btn-block view-cart">Voir Panier</ALink>
-=======
-                                    <ALink href="/pages/cart" className="btn btn-gray btn-block view-cart">View Cart</ALink>
->>>>>>> 8f2655e415c8c4a73dc793034924a8a4d368e5f4
                                     <ALink href="/pages/checkout" className="btn btn-dark btn-block text-white">Checkout</ALink>
                                 </div>
                             </>
                             :
-<<<<<<< HEAD
                             <p className="pt-3 mt-2">Pas de produits dans votre panier.</p>
-=======
-                            <p className="pt-3 mt-2">No products in the cart.</p>
->>>>>>> 8f2655e415c8c4a73dc793034924a8a4d368e5f4
                     }
                 </div>
             </div>
