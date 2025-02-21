@@ -12,10 +12,10 @@ function CartPopup(props) {
             <div className="minipopup-box" style={{ top: "0" }}>
                 <div className="product media-with-lazy">
                     <figure className="product-media w-100">
-                        <ALink href={`/product/default/${product.slug}`} >
+                        <ALink href={`/product/default/${product.ref}`} >
                             <LazyLoadImage
                                 alt="product"
-                                src={product.small_pictures ? `${process.env.NEXT_PUBLIC_ASSET_URI + product.small_pictures[0].url}` : ''}
+                                src={product.pictures ? `${product.pictures[0].url}` : ''}
                                 threshold={500}
                                 effect="black and white"
                                 width="100%"
@@ -27,14 +27,14 @@ function CartPopup(props) {
                         {
                             product.index > -1 ?
                                 !product.variants[product.index].color ?
-                                    <ALink className="product-name" href={`/product/default/${product.slug}`}>{product.name + ' - ' + product.variants[product.index].size.name}</ALink>
+                                    <ALink className="product-name" href={`/product/default/${product.ref}`}>{product.name + ' - ' + product.variants[product.index].size.name}</ALink>
                                     :
                                     !product.variants[product.index].size ?
-                                        <ALink className="product-name" href={`/product/default/${product.slug}`}>{product.name + ' - ' + product.variants[product.index].color.name}</ALink>
+                                        <ALink className="product-name" href={`/product/default/${product.ref}`}>{product.name + ' - ' + product.variants[product.index].color.name}</ALink>
                                         :
-                                        <ALink className="product-name" href={`/product/default/${product.slug}`}>{product.name + ' - ' + product.variants[product.index].color.name + ', ' + product.variants[product.index].size.name}</ALink>
+                                        <ALink className="product-name" href={`/product/default/${product.ref}`}>{product.name + ' - ' + product.variants[product.index].color.name + ', ' + product.variants[product.index].size.name}</ALink>
                                 :
-                                <ALink className="product-name" href={`/product/default/${product.slug}`}>{product.name}</ALink>
+                                <ALink className="product-name" href={`/product/default/${product.ref}`}>{product.name}</ALink>
                         }
 
                         <p>has been added to your cart.</p>

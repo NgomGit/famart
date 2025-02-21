@@ -92,12 +92,16 @@ function ProductDetailOne ( props ) {
     function onAddCartClick ( e ) {
         e.preventDefault();
 
-        if ( product.stock > 0 && !e.currentTarget.classList.contains( 'disabled' ) ) {
-            if ( product.variants.length === 0 ) {
-                props.addToCart( product, qty, -1 );
-            } else {
-                props.addToCart( product, qty, variant.id );
-            }
+        console.log("product clicked is ", product)
+
+        if ( product.sku > 0  ) {
+            // && !e.currentTarget.classList.contains( 'disabled' )
+            props.addToCart( product, qty, -1 );
+            // if ( product.variants.length === 0 ) {
+            //     props.addToCart( product, qty, -1 );
+            // } else {
+            //     props.addToCart( product, qty, variant.id );
+            // }
         }
     }
 
@@ -162,13 +166,13 @@ function ProductDetailOne ( props ) {
 
                     <div className="price-box">
                         {
-                            product.price[ 0 ] == product.price[ 1 ] ?
-                                <span className="product-price">{ '$' + product.price[ 0 ].toFixed( 2 ) }</span>
+                            product.price == product.sale_price ?
+                                <span className="product-price">{ '$' + product.price.toFixed( 2 ) }</span>
                                 : product.variants.length > 0 ?
-                                    <span className="product-price">{ '$' + product.price[ 0 ].toFixed( 2 ) } &ndash; { '$' + product.price[ 1 ].toFixed( 2 ) }</span>
+                                    <span className="product-price">{ '$' + product.price.toFixed( 2 ) } &ndash; { '$' + product.sale_price.toFixed( 2 ) }</span>
                                     : <>
-                                        <span className="old-price">{ '$' + product.price[ 1 ].toFixed( 2 ) }</span>
-                                        <span className="new-price">{ '$' + product.price[ 0 ].toFixed( 2 ) }</span>
+                                        <span className="old-price">{ '$' + product.sale_price.toFixed( 2 ) }</span>
+                                        <span className="new-price">{ '$' + product.price.toFixed( 2 ) }</span>
                                     </>
                         }
                     </div>
@@ -307,7 +311,7 @@ function ProductDetailOne ( props ) {
                                     <div className="sticky-img mr-4 media-with-lazy">
                                         <figure className="mb-0">
                                             <LazyLoadImage
-                                                src={ process.env.NEXT_PUBLIC_ASSET_URI + product.small_pictures[ 0 ].url }
+                                                src={product.pictures[ 0 ].url }
                                                 width="100%"
                                                 height="auto"
                                                 alt="Thumbnail"
@@ -326,14 +330,14 @@ function ProductDetailOne ( props ) {
                                                         )
                                                         :
 
-                                                        product.price[ 0 ] == product.price[ 1 ] ?
-                                                            <span className="product-price">{ '$' + product.price[ 0 ].toFixed( 2 ) }</span>
+                                                        product.price == product.sale_price ?
+                                                            <span className="product-price">{ '$' + product.price.toFixed( 2 ) }</span>
                                                             : product.variants.length > 0 ?
-                                                                <span className="product-price">{ '$' + product.price[ 0 ].toFixed( 2 ) } &ndash; { '$' + product.price[ 1 ].toFixed( 2 ) }</span>
+                                                                <span className="product-price">{ '$' + product.price.toFixed( 2 ) } &ndash; { '$' + product.sale_price.toFixed( 2 ) }</span>
                                                                 :
                                                                 <>
-                                                                    <span className="old-price">{ '$' + product.price[ 1 ].toFixed( 2 ) }</span>
-                                                                    <span className="new-price">{ '$' + product.price[ 0 ].toFixed( 2 ) }</span>
+                                                                    <span className="old-price">{ '$' + product.sale_price.toFixed( 2 ) }</span>
+                                                                    <span className="new-price">{ '$' + product.price.toFixed( 2 ) }</span>
                                                                 </>
                                                 }
                                             </div>

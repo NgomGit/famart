@@ -89,7 +89,7 @@ function ProductDetailOne ( props ) {
 
     function onAddCartClick ( e ) {
         e.preventDefault();
-        if ( product.stock > 0 && !e.currentTarget.classList.contains( 'disabled' ) ) {
+        if ( product.sku > 0 && !e.currentTarget.classList.contains( 'disabled' ) ) {
             if ( product.variants.length === 0 ) {
                 props.addToCart( product, qty, -1 );
             } else {

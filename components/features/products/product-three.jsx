@@ -10,7 +10,7 @@ export default function ProductThree ( props ) {
     return (
         <div className={ `product-default media-with-lazy left-details product-widget ${ adClass }` }>
             <figure>
-                <ALink href={ `/product/${ link }/${ product.slug }` } >
+                <ALink href={ `/product/${ link }/${ product.ref }` } >
                     <div className="lazy-overlay"></div>
 
                     <LazyLoadImage
@@ -36,7 +36,7 @@ export default function ProductThree ( props ) {
 
             <div className="product-details">
                 <h3 className="product-title">
-                    <ALink href={ `/product/default/${ product.slug }` }>{ product.name }</ALink>
+                    <ALink href={ `/product/default/${ product.ref }` }>{ product.name }</ALink>
                 </h3>
 
                 <div className="ratings-container">

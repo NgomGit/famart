@@ -22,7 +22,7 @@ export default function CategroySection () {
                                 <figure>
                                     <img
                                         alt="category"
-                                        src="images/home/categories/category-1.jpg"
+                                        src="images/home/categories/sac-bg.png"
                                         width="100%"
                                         height="auto"
                                     />
@@ -37,7 +37,7 @@ export default function CategroySection () {
                                 <figure>
                                     <img
                                         alt="category"
-                                        src="images/home/categories/category-2.jpg"
+                                        src="images/home/categories/hat.png"
                                         width="100%"
                                         height="auto"
                                     />
@@ -52,9 +52,10 @@ export default function CategroySection () {
                                 <figure>
                                     <img
                                         alt="category"
-                                        src="images/home/categories/category-3.jpg"
+                                        src="images/home/categories/clothes.png"
                                         width="100%"
                                         height="auto"
+                                        style={{objectPosition:'center top' }}
                                     />
                                 </figure>
                                 <div className="category-content">
@@ -82,9 +83,10 @@ export default function CategroySection () {
                                 <figure>
                                     <img
                                         alt="category"
-                                        src="images/home/categories/category-4.jpg"
+                                        src="images/home/categories/divers-bg.png"
                                         width="100%"
                                         height="auto"
+                                        style={{objectPosition:'center bottom' }}
                                     />
                                 </figure>
                                 <div className="category-content">

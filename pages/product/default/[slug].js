@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useQuery } from '@apollo/react-hooks';
 
@@ -13,6 +13,7 @@ import ProductDetailOne from '../../../components/partials/product/details/produ
 import ProductWidgetContainer from '../../../components/partials/product/widgets/product-widget-container';
 import RelatedProducts from '../../../components/partials/product/widgets/related-products';
 import SingleTabFive from '../../../components/partials/product/tabs/single-tab-five';
+import { getProductById } from '../../../lib/firebase/firestore';
 
 function ProductDefault () {
     if ( !useRouter().query.slug ) return (
@@ -24,10 +25,27 @@ function ProductDefault () {
             </div>
         </div>
     );
+
+    let error = null
     const slug = useRouter().query.slug;
-    const { data, loading, error } = useQuery( GET_PRODUCT, { variables: { slug } } );
-    const product = data && data.product.data;
-    const related = data && data.product.related;
+    const [product, setProduct] = useState()
+    const [loading, setLoadiing] = useState(true)
+    // const { data, loading, error } = useQuery( GET_PRODUCT, { variables: { slug } } );
+    // const product = data && data.product.data;
+    // const related = data && data.product.related;
+    const related = []
+
+    useEffect(()=>{
+        if(slug){
+            getProductById(slug, (prod) =>{
+                setProduct(prod)
+                setLoadiing(false)
+            })
+        }else{
+           error = {message:"undefined slug"}
+        }
+        
+    },[])
 
     if ( error ) {
         return <div>{ error.message }</div>
@@ -42,7 +60,7 @@ function ProductDefault () {
                         <li className="breadcrumb-item"><ALink href="/shop">Shop</ALink></li>
                         <li className="breadcrumb-item">
                             {
-                                product && product.categories.map( ( item, index ) => (
+                                product && product.categories?.map( ( item, index ) => (
                                     <React.Fragment key={ `category-${ index }` }>
                                         <ALink href={ { pathname: "/shop", query: { category: item.slug } } }>{ item.name }</ALink>
                                         { index < product.categories.length - 1 ? ',' : '' }
@@ -62,8 +80,8 @@ function ProductDefault () {
 
                         <ProductDetailOne
                             product={ product }
-                            prev={ product && data.product.prev }
-                            next={ product && data.product.next }
+                            // prev={ product && data.product.prev }
+                            // next={ product && data.product.next }
                         />
                     </div>
                 </div>

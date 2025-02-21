@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useQuery, useLazyQuery } from '@apollo/react-hooks';
 import { connect } from 'react-redux';
 import Modal from 'react-modal';
@@ -14,6 +14,7 @@ import { actions as ModalAction } from "../../../store/modal";
 // Import Custom Component
 import ProductMediaOne from '../../partials/product/media/product-media-one';
 import ProductDetailOne from '../../../components/partials/product/details/product-detail-one';
+import { getProductById } from '../../../lib/firebase/firestore';
 
 Modal.setAppElement( '#__next' );
 
@@ -34,9 +35,12 @@ const customStyles = {
 function QuickModal ( props ) {
     const { slug } = props;
     if ( !slug ) return <div></div>
-    const { data, loading, error } = useQuery( GET_PRODUCT, { variables: { demo: 4, slug, onlyData: true } } );
+    // const { data, loading, error } = useQuery( GET_PRODUCT, { variables: { demo: 4, slug, onlyData: true } } );
     const router = useRouter();
-    const product = data && data.product.data;
+    // const product = data && data.product.data;
+    const [product, setProduct] = useState()
+    const [loading, setLoading] = useState(true)
+    const [error, setError] = useState(false)
 
     useEffect( () => {
         router.events.on( 'routeChangeStart', closeModal );
@@ -45,6 +49,13 @@ function QuickModal ( props ) {
             router.events.off( 'routeChangeStart', closeModal );
         }
     }, [] )
+
+    useEffect(()=>{
+        getProductById(slug, (prod) =>{
+            setProduct(prod)
+            setLoading(false)
+        })
+    },[])
 
     if ( error ) {
         return <div>{ error.message }</div>
@@ -73,7 +84,7 @@ function QuickModal ( props ) {
                     <ProductMediaOne product={ product } parent=".product-quick-view" adClass="col-md-6 mb-md-0" />
 
                     <div className="col-md-6">
-                        <ProductDetailOne product={ product } parent=".product-quick-view" isNav={ false } adClass="mb-0" />
+                        <ProductDetailOne product={ product } parent=".product-quick-view" isNav={ false } adClass="mb-0 col-md-12"  />
                     </div>
                 </div>
 

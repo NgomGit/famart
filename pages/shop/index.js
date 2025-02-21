@@ -109,11 +109,11 @@ function Shop () {
                             query.category ?
                                 <>
                                     <li className="breadcrumb-item"><ALink href={ { query: {} } } scroll={ false }>shop</ALink></li>
-                                    {
-                                        data && data.products.categoryFamily.map( ( item, index ) => (
+                                    {/* {
+                                        products?.categoryFamily.map( ( item, index ) => (
                                             <li className="breadcrumb-item" key={ `category-family-${index}` }><ALink href={ { query: { category: item.slug } } } scroll={ false }>{ item.name }</ALink></li>
                                         ) )
-                                    }
+                                    } */}
                                     <li className="breadcrumb-item active">
                                         {
                                             query.search ?

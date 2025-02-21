@@ -27,7 +27,7 @@ function Wishlist(props) {
 
     const onQuickViewClick = (e, product) => {
         e.preventDefault();
-        showQuickView(product.slug);
+        showQuickView(product.ref);
     }
 
     return (

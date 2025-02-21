@@ -50,13 +50,13 @@ function ProductOne(props) {
 
     function onQuickViewClick(e) {
         e.preventDefault();
-        props.showQuickView(product.slug);
+        props.showQuickView(product.ref);
     }
 
     return (
         <div className={`product-default inner-quickview inner-icon media-with-lazy ${adClass}`}>
             <figure>
-                <ALink href={`/product/${link}/${product.slug}`}>
+                <ALink href={`/product/${link}/${product.ref}`}>
                     <div className="lazy-overlay"></div>
 
                     <LazyLoadImage
@@ -89,7 +89,7 @@ function ProductOne(props) {
                 <div className="btn-icon-group">
                     {
                         product.variants.length > 0 ?
-                            <ALink href={`/product/default/${product.slug}`} className="btn-icon btn-add-cart"><i
+                            <ALink href={`/product/default/${product.ref}`} className="btn-icon btn-add-cart"><i
                                 className="fa fa-arrow-right"></i></ALink>
                             : <a href="#" className="btn-icon btn-add-cart product-type-simple" title="Add To Cart" onClick={onAddCartClick}><i
                                 className="icon-shopping-cart"></i></a>
@@ -124,7 +124,7 @@ function ProductOne(props) {
                 </div>
 
                 <h3 className="product-title">
-                    <ALink href={`/product/default/${product.slug}`}>{product.name}</ALink>
+                    <ALink href={`/product/default/${product.ref}`}>{product.name}</ALink>
                 </h3>
 
                 <div className="ratings-container">
