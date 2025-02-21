@@ -62,10 +62,17 @@ function Cart ( props ) {
                                         <thead>
                                             <tr>
                                                 <th className="thumbnail-col"></th>
+<<<<<<< HEAD
                                                 <th className="product-col">Produit</th>
                                                 <th className="price-col">Prix</th>
                                                 <th className="qty-col">Quantité</th>
                                                 <th className="text-right">Sous total</th>
+=======
+                                                <th className="product-col">Product</th>
+                                                <th className="price-col">Price</th>
+                                                <th className="qty-col">Quantity</th>
+                                                <th className="text-right">Subtotal</th>
+>>>>>>> 8f2655e415c8c4a73dc793034924a8a4d368e5f4
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -75,7 +82,11 @@ function Cart ( props ) {
                                                         <td>
                                                             <figure className="product-image-container">
                                                                 <ALink href={ `/product/default/${item.slug}` } className="product-image">
+<<<<<<< HEAD
                                                                     <img src={ item.pictures[ 0 ].url } alt="product" />
+=======
+                                                                    <img src={ process.env.NEXT_PUBLIC_ASSET_URI + item.small_pictures[ 0 ].url } alt="product" />
+>>>>>>> 8f2655e415c8c4a73dc793034924a8a4d368e5f4
                                                                 </ALink>
 
                                                                 <a href="#" className="btn-remove icon-cancel" title="Remove Product" onClick={ ( e ) => { e.preventDefault(); removeFromCart( item, index ); } }></a>

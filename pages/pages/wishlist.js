@@ -94,7 +94,11 @@ function Wishlist(props) {
                                                         <ALink href={`/product/default/${item.slug}`} className="product-image">
                                                             <LazyLoadImage
                                                                 alt="product"
+<<<<<<< HEAD
                                                                 src={item.pictures[0].url}
+=======
+                                                                src={process.env.NEXT_PUBLIC_ASSET_URI + item.pictures[0].url}
+>>>>>>> 8f2655e415c8c4a73dc793034924a8a4d368e5f4
                                                                 threshold={500}
                                                                 width="80"
                                                                 height="80"
@@ -111,6 +115,7 @@ function Wishlist(props) {
                                                 <td>
                                                     <div className="price-box">
                                                         {
+<<<<<<< HEAD
                                                             item.price == item.sale_price ?
                                                                 <span className="product-price">{'$' + item.price.toFixed(2)}</span>
                                                                 : item.variants.length > 0 ?
@@ -118,6 +123,15 @@ function Wishlist(props) {
                                                                     : <>
                                                                         <span className="old-price">{'$' + item.sale_price.toFixed(2)}</span>
                                                                         <span className="new-price">{'$' + item.price.toFixed(2)}</span>
+=======
+                                                            item.price[0] == item.price[1] ?
+                                                                <span className="product-price">{'$' + item.price[0].toFixed(2)}</span>
+                                                                : item.variants.length > 0 ?
+                                                                    <span className="product-price">{'$' + item.price[0].toFixed(2)} &ndash; {'$' + item.price[1].toFixed(2)}</span>
+                                                                    : <>
+                                                                        <span className="old-price">{'$' + item.price[1].toFixed(2)}</span>
+                                                                        <span className="new-price">{'$' + item.price[0].toFixed(2)}</span>
+>>>>>>> 8f2655e415c8c4a73dc793034924a8a4d368e5f4
                                                                     </>
                                                         }
                                                     </div>

@@ -10,6 +10,7 @@ import ProductThree from '../../features/products/product-three';
 
 function ProductWidgetContainer ( props ) {
     const { adClass = "" } = props;
+<<<<<<< HEAD
     // const { data, loading, error } = useQuery( GET_SPECIAL_PRODUCTS, { variables: { featured: true, bestSelling: true, latest: true, topRated: true, count: 3 } } );
     // const featured = data && data.specialProducts.featured;
     // const bestSelling = data && data.specialProducts.bestSelling;
@@ -18,6 +19,13 @@ function ProductWidgetContainer ( props ) {
     // const topRated = data && data.specialProducts.topRated;
     const {featured, bestSelling, latest, error, loading} = props
     const topRated= [] 
+=======
+    const { data, loading, error } = useQuery( GET_SPECIAL_PRODUCTS, { variables: { featured: true, bestSelling: true, latest: true, topRated: true, count: 3 } } );
+    const featured = data && data.specialProducts.featured;
+    const bestSelling = data && data.specialProducts.bestSelling;
+    const latest = data && data.specialProducts.latest;
+    const topRated = data && data.specialProducts.topRated;
+>>>>>>> 8f2655e415c8c4a73dc793034924a8a4d368e5f4
 
     if ( error ) {
         return <div>{ error.message }</div>
@@ -36,7 +44,11 @@ function ProductWidgetContainer ( props ) {
                                 :
 
                                 <>
+<<<<<<< HEAD
                                     <h4 className="section-sub-title">Produits Spécials</h4>
+=======
+                                    <h4 className="section-sub-title">Featured Products</h4>
+>>>>>>> 8f2655e415c8c4a73dc793034924a8a4d368e5f4
                                     {
                                         featured.slice( 0, 3 ).map( ( product, index ) => (
                                             <ProductThree product={ product } key={ `ProductThree`, index } />
@@ -56,7 +68,11 @@ function ProductWidgetContainer ( props ) {
                                 :
 
                                 <>
+<<<<<<< HEAD
                                     <h4 className="section-sub-title">Meilleurs ventes</h4>
+=======
+                                    <h4 className="section-sub-title">Best Selling Products</h4>
+>>>>>>> 8f2655e415c8c4a73dc793034924a8a4d368e5f4
                                     {
                                         bestSelling.slice( 0, 3 ).map( ( product, index ) => (
                                             <ProductThree product={ product } key={ `ProductThree`, index } />
@@ -76,7 +92,11 @@ function ProductWidgetContainer ( props ) {
                                 :
 
                                 <>
+<<<<<<< HEAD
                                     <h4 className="section-sub-title">Nos Produits Récents</h4>
+=======
+                                    <h4 className="section-sub-title">Latest Products</h4>
+>>>>>>> 8f2655e415c8c4a73dc793034924a8a4d368e5f4
 
                                     {
                                         latest.slice( 0, 3 ).map( ( product, index ) => (
