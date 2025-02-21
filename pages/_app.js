@@ -43,11 +43,11 @@ const App = ({ Component, pageProps }) => {
                         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
                         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-                        <title>Porto - React eCommerce Template</title>
+                        <title>FamaArt</title>
 
                         <meta name="keywords" content="HTML5 Template" />
-                        <meta name="description" content="Porto - Bootstrap eCommerce Template" />
-                        <meta name="author" content="SW-THEMES" />
+                        <meta name="description" content="FamaArt" />
+                        {/* <meta name="author" content="SW-THEMES" /> */}
                     </Helmet>
 
                     <Layout>

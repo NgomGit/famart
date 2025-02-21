@@ -16,8 +16,8 @@ function ProductOne(props) {
     const { adClass = "", link = "default", product } = props;
 
     function isSale() {
-        return product.price[0] !== product.price[1] && product.variants.length === 0 ?
-            '-' + (100 * (product.price[1] - product.price[0]) / product.price[1]).toFixed(0) + '%'
+        return product.price !== product.sale_price && product.variants.length === 0 ?
+            '-' + (100 * (product.sale_price - product.price) / product.sale_price).toFixed(0) + '%'
             :
             product.variants.find(variant => variant.sale_price) ? "Sale" : false;
     }
@@ -61,7 +61,7 @@ function ProductOne(props) {
 
                     <LazyLoadImage
                         alt="product"
-                        src={process.env.NEXT_PUBLIC_ASSET_URI + product.pictures[0].url}
+                        src={product.pictures[0].url}
                         threshold={500}
                         effect="black and white"
                         width="100%"
@@ -71,7 +71,7 @@ function ProductOne(props) {
                         product.pictures.length >= 2 ?
                             <LazyLoadImage
                                 alt="product"
-                                src={process.env.NEXT_PUBLIC_ASSET_URI + product.pictures[1].url}
+                                src={product.pictures[1].url}
                                 threshold={500}
                                 effect="black and white"
                                 wrapperClassName="product-image-hover"
@@ -136,13 +136,13 @@ function ProductOne(props) {
 
                 <div className="price-box">
                     {
-                        product.price[0] == product.price[1] ?
-                            <span className="product-price">{'$' + product.price[0].toFixed(2)}</span>
+                        product.price == product.sale_price ?
+                            <span className="product-price">{'$' + product.price.toFixed(2)}</span>
                             : product.variants.length > 0 ?
-                                <span className="product-price">{'$' + product.price[0].toFixed(2)} &ndash; {'$' + product.price[1].toFixed(2)}</span>
+                                <span className="product-price">{'$' + product.price.toFixed(2)} &ndash; {'$' + product.sale_price.toFixed(2)}</span>
                                 : <>
-                                    <span className="old-price">{'$' + product.price[1].toFixed(2)}</span>
-                                    <span className="product-price">{'$' + product.price[0].toFixed(2)}</span>
+                                    <span className="old-price">{'$' + product.sale_price.toFixed(2)}</span>
+                                    <span className="product-price">{'$' + product.price.toFixed(2)}</span>
                                 </>
                     }
                 </div>

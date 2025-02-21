@@ -10,37 +10,55 @@ import ProductsGrid from '../../components/partials/products-collection/product-
 
 import { GET_PRODUCTS } from '../../server/queries';
 import withApollo from '../../server/apollo';
+import { getProductsDoc } from '../../lib/firebase/firestore';
 
 function Shop () {
+    let error = null
+    // const router = useRouter();
+    // const query = router.query;
+    // const [ getProducts, { data, loading, error } ] = useLazyQuery( GET_PRODUCTS );
+    // const [ perPage, setPerPage ] = useState( 12 );
+    // const [ sortBy, setSortBy ] = useState( query.sortBy ? query.sortBy : 'default' );
+    // const products = data && data.products.data;
+    // const totalPage = data ? parseInt( data.products.total / perPage ) + ( data.products.total % perPage ? 1 : 0 ) : 1;
+
     const router = useRouter();
     const query = router.query;
-    const [ getProducts, { data, loading, error } ] = useLazyQuery( GET_PRODUCTS );
-    const [ perPage, setPerPage ] = useState( 12 );
+    // const [ getProducts, { data, loading, error } ] = useLazyQuery( GET_PRODUCTS );
+    const [ perPage, setPerPage ] = useState( 36 );
     const [ sortBy, setSortBy ] = useState( query.sortBy ? query.sortBy : 'default' );
-    const products = data && data.products.data;
-    const totalPage = data ? parseInt( data.products.total / perPage ) + ( data.products.total % perPage ? 1 : 0 ) : 1;
+    // const products = data && data.products.data;
+    const [products, setProducts] = useState()
+    const [loading, setLoading] = useState(true)
 
-    useEffect( () => {
-        let offset = document.querySelector( '.main-content' ).getBoundingClientRect().top + window.pageYOffset - 58;
-        window.scrollTo( { top: offset, behavior: 'smooth' } );
+    // useEffect( () => {
+    //     let offset = document.querySelector( '.main-content' ).getBoundingClientRect().top + window.pageYOffset - 58;
+    //     window.scrollTo( { top: offset, behavior: 'smooth' } );
 
-        let page = query.page ? query.page : 1;
+    //     let page = query.page ? query.page : 1;
 
-        getProducts( {
-            variables: {
-                search: query.search,
-                colors: query.colors ? query.colors.split( ',' ) : [],
-                sizes: query.sizes ? query.sizes.split( ',' ) : [],
-                min_price: parseInt( query.min_price ),
-                max_price: parseInt( query.max_price ),
-                category: query.category,
-                tag: query.tag,
-                sortBy: sortBy,
-                from: perPage * ( page - 1 ),
-                to: perPage * page
-            }
-        } );
-    }, [ query, perPage, sortBy ] )
+    //     getProducts( {
+    //         variables: {
+    //             search: query.search,
+    //             colors: query.colors ? query.colors.split( ',' ) : [],
+    //             sizes: query.sizes ? query.sizes.split( ',' ) : [],
+    //             min_price: parseInt( query.min_price ),
+    //             max_price: parseInt( query.max_price ),
+    //             category: query.category,
+    //             tag: query.tag,
+    //             sortBy: sortBy,
+    //             from: perPage * ( page - 1 ),
+    //             to: perPage * page
+    //         }
+    //     } );
+    // }, [ query, perPage, sortBy ] )
+
+    useEffect(()=>{
+        getProductsDoc((results)=>{
+            setProducts(results)
+            setLoading(false)
+        }, query)
+    }, [query])
 
     function onPerPageChange ( e ) {
         setPerPage( e.target.value );
@@ -123,7 +141,7 @@ function Shop () {
 
                 <div className="row">
                     <div className="col-lg-9 main-content">
-                        <nav className="toolbox sticky-header mobile-sticky">
+                        {/* <nav className="toolbox sticky-header mobile-sticky">
                             <div className="toolbox-left">
                                 <a href="#" className="sidebar-toggle" onClick={ e => sidebarToggle( e ) }>
                                     <svg data-name="Layer 3" id="Layer_3" viewBox="0 0 32 32"
@@ -184,7 +202,7 @@ function Shop () {
                                     </ALink>
                                 </div>
                             </div>
-                        </nav>
+                        </nav> */}
 
                         <ProductsGrid products={ products } loading={ loading } perPage={ perPage } />
 
@@ -201,7 +219,7 @@ function Shop () {
                                         </select>
                                     </div>
                                 </div>
-                                <Pagination totalPage={ totalPage } />
+                                {/* <Pagination totalPage={ totalPage } /> */}
                             </nav>
                             : ''
                         }

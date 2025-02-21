@@ -15,6 +15,7 @@ import { GET_SHOP_SIDEBAR_DATA } from '../../../../server/queries';
 import { widgetFeaturedProductSlider } from '../../../../utils/data/slider';
 import { shopColors, shopSizes } from '../../../../utils/data/shop';
 import ProductThree from '../../../features/products/product-three';
+import { getCategories, getFeaturedProducts } from '../../../../lib/firebase/firestore';
 
 const TreeNode = ( props ) => {
     return (
@@ -28,50 +29,69 @@ const TreeNode = ( props ) => {
 function ShopSidebarOne ( props ) {
     const router = useRouter();
     const query = router.query;
-    const { data, loading, error } = useQuery( GET_SHOP_SIDEBAR_DATA, { variables: { featured: true } } );
-    const [ priceRange, setRange ] = useState( { min: 0, max: 1000 } );
-    const categories = useMemo( () => {
-        let cats = data ? data.shopSidebarData.categories : [];
-        let stack = [],
-            result = [];
-        result = cats.reduce( ( acc, cur ) => {
-            if ( !cur.parent ) {
-                let newNode = {
-                    key: cur.slug,
-                    title: <TreeNode name={ cur.name } count={ cur.count } />,
-                    children: []
-                };
-                acc.push( newNode );
-                stack.push( {
-                    name: cur.name,
-                    children: newNode.children
-                } );
-            }
-            return acc;
-        }, [] );
+    let error = null
+    // const { data, loading, error } = useQuery( GET_SHOP_SIDEBAR_DATA, { variables: { featured: true } } );
+    const [ priceRange, setRange ] = useState( { min: 0, max: 100000 } );
+    const [features, setFeatures] = useState([])
+    const [loading, setLoading] = useState(true)
+    const [categories, setCategories] = useState([])
 
-        let temp, children, childNode;
+    // const categories = useMemo( () => {
+    //     let cats = data ? data.shopSidebarData.categories : [];
+    //     let stack = [],
+    //         result = [];
+    //     result = cats.reduce( ( acc, cur ) => {
+    //         if ( !cur.parent ) {
+    //             let newNode = {
+    //                 key: cur.slug,
+    //                 title: <TreeNode name={ cur.name } count={ cur.count } />,
+    //                 children: []
+    //             };
+    //             acc.push( newNode );
+    //             stack.push( {
+    //                 name: cur.name,
+    //                 children: newNode.children
+    //             } );
+    //         }
+    //         return acc;
+    //     }, [] );
 
-        while ( stack.length ) {
-            temp = stack[ stack.length - 1 ];
-            stack.pop();
-            children = cats.filter( item => item.parent === temp.name );
-            children.forEach( child => {
-                childNode = {
-                    key: child.slug,
-                    title: <TreeNode name={ child.name } count={ child.count } />,
-                    children: []
-                };
-                temp.children.push( childNode );
-                stack.push( {
-                    name: child.name,
-                    children: childNode.children
-                } );
-            } );
-        }
+    //     let temp, children, childNode;
 
-        return result;
-    }, [ data ] );
+    //     while ( stack.length ) {
+    //         temp = stack[ stack.length - 1 ];
+    //         stack.pop();
+    //         children = cats.filter( item => item.parent === temp.name );
+    //         children.forEach( child => {
+    //             childNode = {
+    //                 key: child.slug,
+    //                 title: <TreeNode name={ child.name } count={ child.count } />,
+    //                 children: []
+    //             };
+    //             temp.children.push( childNode );
+    //             stack.push( {
+    //                 name: child.name,
+    //                 children: childNode.children
+    //             } );
+    //         } );
+    //     }
+
+    //     return result;
+    // }, [ data ] );
+
+    useEffect(()=>{
+        getFeaturedProducts((results)=>{
+            setFeatures(results)
+            setLoading(false)
+        })
+    }, [])
+
+    useEffect(()=>{
+        getCategories((results)=>{
+            setCategories(results)
+            setLoading(false)
+        })
+    }, [])
 
     useEffect( () => {
         return () => {
@@ -83,7 +103,7 @@ function ShopSidebarOne ( props ) {
         if ( query.min_price && query.max_price ) {
             setRange( { min: parseInt( query.min_price ), max: parseInt( query.max_price ) } );
         } else {
-            setRange( { min: 0, max: 1000 } );
+            setRange( { min: 0, max: 100000 } );
         }
     }, [ query ] )
 
@@ -281,7 +301,7 @@ function ShopSidebarOne ( props ) {
                                                             <div className="skel-product-col skel-pro mb-2" key={ "product-one" + index }></div>
                                                         )
                                                         :
-                                                        data && data.shopSidebarData.featured.map( ( item, index ) => (
+                                                        features.map( ( item, index ) => (
                                                             <ProductThree product={ item } key={ `featured-${ index }` } />
                                                         ) )
                                                 }
@@ -293,7 +313,7 @@ function ShopSidebarOne ( props ) {
                                                             <div className="skel-product-col skel-pro mb-2" key={ "product-one" + index }></div>
                                                         )
                                                         :
-                                                        data && data.shopSidebarData.featured.map( ( item, index ) => (
+                                                        features.map( ( item, index ) => (
                                                             <ProductThree product={ item } key={ `featured-${ index }` } />
                                                         ) )
                                                 }

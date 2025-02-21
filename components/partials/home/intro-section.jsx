@@ -15,7 +15,7 @@ export default function IntroSection() {
                 loop: false,
                 navText: ['<i class="icon-left-open-big">', '<i class="icon-right-open-big">']
             }}>
-                <div className="home-slide home-slide1 d-flex align-items-center banner" style={{ backgroundImage: 'url(images/home/slider/slide-1.jpg)' }}>
+                <div className="home-slide home-slide1 d-flex align-items-center banner" style={{ backgroundImage: 'url(images/home/slider/banner-1.png)', backgroundRepeat:'no-repeat', backgroundPosition:'left', backgroundSize:'cover'}}>
                     <div className="container">
                         <div className="banner-layer banner-layer-right float-right">
                             <Reveal keyframes={fadeInUpShorter} delay={200} duration={1000}>
@@ -33,7 +33,7 @@ export default function IntroSection() {
                         </div>
                     </div>
                 </div>
-                <div className="home-slide home-slide2 banner d-flex align-items-center banner" style={{ backgroundImage: 'url(images/home/slider/slide-2.jpg)' }}>
+                <div className="home-slide home-slide2 banner d-flex align-items-center banner" style={{ backgroundImage: 'url(images/home/slider/banner-2.png)' }}>
                     <div className="container">
                         <div className="banner-layer banner-layer-left float-left">
                             <Reveal keyframes={fadeInUpShorter} delay={200} duration={1000}>

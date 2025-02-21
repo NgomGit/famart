@@ -9,19 +9,12 @@ import { GET_PRODUCTS } from '../../../server/queries';
 import { fadeInUpShorter } from '../../../utils/data/keyframes'
 
 export default function LoadMoreProduct(props) {
-    const { product = [], loading, perPage, total } = props;
-    const [loadmore, { data, loading: ajaxLoading }] = useLazyQuery(GET_PRODUCTS);
-    const [products, setProducts] = useState([]);
+    const { products = [], loading, perPage, total } = props;
+    // const [products, setProducts] = useState([]);
 
-    useEffect(() => {
-        setProducts(product);
-    }, [product])
-
-    useEffect(() => {
-        if (data) {
-            setProducts([...products, ...data.products.data]);
-        }
-    }, [data])
+    // useEffect(() => {
+    //     setProducts(product);
+    // }, [product])
 
     function onLoadMoreProducts(e) {
         loadmore({
