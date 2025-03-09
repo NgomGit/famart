@@ -2,7 +2,7 @@ import React from 'react';
 import Link from "next/link";
 import { useRouter } from 'next/router';
 
-export default function ALink ( { children, className, style, href, ...props } ) {
+export default function ALink ( { children, className, onItemClick = null, style, href, ...props } ) {
     if ( typeof href === 'object' ) {
         if ( !href.pathname ) {
             href.pathname = useRouter().pathname;
@@ -21,7 +21,10 @@ export default function ALink ( { children, className, style, href, ...props } )
                         { children }
                     </a>
                 </Link>
-                : <a className={ className } href="#" onClick={ e => e.preventDefault() }>{ children }</a>
+                : <a className={ className } href="#" onClick={ e => {
+                    e.preventDefault()
+                    onItemClick ? onItemClick() : ''
+                } }>{ children }</a>
             }
         </>
     )

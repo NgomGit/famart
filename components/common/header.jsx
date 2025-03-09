@@ -72,7 +72,7 @@ export default function Header ( { adClass = '' } ) {
                         <div className="header-right">
                             {/* <SearchForm /> */}
 
-                            <ALink href="/pages/login" className="header-icon header-icon-user"><i className="icon-user-2"></i></ALink>
+                            <ALink href="/pages/account" className="header-icon header-icon-user"><i className="icon-user-2"></i></ALink>
 
                             <ALink href="/pages/wishlist" className="header-icon"><i className="icon-wishlist-2"></i></ALink>
 

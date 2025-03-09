@@ -3,8 +3,14 @@ import { connect } from 'react-redux';
 import SlideToggle from 'react-slide-toggle';
 import ALink from "../../components/common/ALink";
 import { getCartTotal } from '../../utils';
+import {initiatePayment} from "../../lib/paydunya";
 
 function CheckOut ( { cartList } ) {
+
+    const onCheckout = () =>{
+        initiatePayment()
+    }
+
     return (
         <main className="main main-test">
             <div className="container checkout-container">
@@ -382,7 +388,7 @@ function CheckOut ( { cartList } ) {
                                             </div>
                                         </div>
 
-                                        <button type="submit" className="btn btn-dark btn-place-order" form="checkout-form">
+                                        <button type="submit" onClick={onCheckout} className="btn btn-dark btn-place-order" form="checkout-form">
                                             Place order
                                         </button>
                                     </div>

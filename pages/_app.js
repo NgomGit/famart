@@ -20,6 +20,7 @@ const client = new ApolloClient({
 const App = ({ Component, pageProps }) => {
     const store = useStore();
 
+
     useEffect(() => {
         if (store.getState().demo.current !== 11) {
             store.dispatch(DemoAction.refreshStore(11));
