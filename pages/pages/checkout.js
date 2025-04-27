@@ -48,7 +48,6 @@ function CheckOut ( { cartList } ) {
                 setUserDetails(details)
             })
         }
-        handlePaymentStatus(0)
     },[currentUser])
 
     useEffect(()=>{
@@ -72,6 +71,17 @@ function CheckOut ( { cartList } ) {
                     className: "notification-error"
                 }
             );
+        }else{
+           
+            toast(
+                <PNotify title="Error" icon="fas fa-check" text="Paiement effectué avec succés." />,
+                {
+                    containerId: "default",
+                    className: "notification-error"
+                }
+            );
+
+            navigateToPath("/")
         }
     }
 
@@ -451,7 +461,7 @@ function CheckOut ( { cartList } ) {
                                             </div>
                                         </div>
 
-                                        <button type="submit" onClick={onCheckout} className="btn btn-dark btn-place-order" form="checkout-form">
+                                        <button type="submit" onClick={() => onCheckout} className="btn btn-dark btn-place-order" form="checkout-form">
                                             Confirmer la commande
                                         </button>
                                     </div>

@@ -149,7 +149,7 @@ export default function Login() {
                                                className="forget-password text-dark form-footer-right">Créer un compte
                                             Password?</ALink>
                                     </div>
-                                    <button type="submit" onClick={logInUser} className="btn btn-dark btn-md w-100">
+                                    <button type="submit" onClick={() => logInUser} className="btn btn-dark btn-md w-100">
                                         Se Connecter
                                     </button>
                                 </form>
