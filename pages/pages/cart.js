@@ -87,19 +87,19 @@ function Cart ( props ) {
                                                             </h5>
                                                         </td>
                                                         <td>
-                                                            ${ item.price.toFixed( 2 ) }
+                                                            { item.price.toFixed( 2 ) } 
                                                         </td>
                                                         <td>
                                                             <Qty value={ item.qty } onChangeQty={ qty => onChangeQty( index, qty ) } />
                                                         </td>
-                                                        <td className="text-right"><span className="subtotal-price">${ ( item.price * item.qty ).toFixed( 2 ) }</span></td>
+                                                        <td className="text-right"><span className="subtotal-price">{ ( item.price * item.qty ).toFixed( 2 ) } FCFA</span></td>
                                                     </tr>
                                                 ) )
                                             }
                                         </tbody>
 
 
-                                        <tfoot>
+                                        {/* <tfoot>
                                             <tr>
                                                 <td colSpan="5" className="clearfix">
                                                     <div className="float-left">
@@ -123,7 +123,7 @@ function Cart ( props ) {
                                                     </div>
                                                 </td>
                                             </tr>
-                                        </tfoot>
+                                        </tfoot> */}
                                     </table>
                                 </div>
                             </div>
@@ -136,29 +136,29 @@ function Cart ( props ) {
                                         <tbody>
                                             <tr>
                                                 <td>Subtotal</td>
-                                                <td>${ getCartTotal( cartList ).toFixed( 2 ) }</td>
+                                                <td> { getCartTotal( cartList ).toFixed( 2 ) } FCFA</td>
                                             </tr>
 
                                             <tr>
                                                 <td colSpan="2" className="text-left">
-                                                    <h4>Shipping</h4>
+                                                    <h4>Livraison</h4>
 
                                                     <div className="form-group form-group-custom-control">
                                                         <div className="custom-control custom-radio">
                                                             <input type="radio" className="custom-control-input" name="radio"
                                                                 defaultChecked />
-                                                            <label className="custom-control-label">Local pickup</label>
+                                                            <label className="custom-control-label">Sénégal</label>
                                                         </div>
                                                     </div>
 
                                                     <div className="form-group form-group-custom-control mb-0">
                                                         <div className="custom-control custom-radio mb-0">
                                                             <input type="radio" name="radio" className="custom-control-input" />
-                                                            <label className="custom-control-label">Flat rate</label>
+                                                            <label className="custom-control-label">International</label>
                                                         </div>
                                                     </div>
 
-                                                    <form action="#">
+                                                    {/* <form action="#">
                                                         <div className="form-group form-group-sm">
                                                             <label>Shipping to <strong>NY.</strong></label>
                                                             <div className="select-custom">
@@ -194,7 +194,7 @@ function Cart ( props ) {
                                                         <button type="submit" className="btn btn-shop btn-update-total">
                                                             Update Totals
                                                     </button>
-                                                    </form>
+                                                    </form> */}
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -202,7 +202,7 @@ function Cart ( props ) {
                                         <tfoot>
                                             <tr>
                                                 <td>Total</td>
-                                                <td>${ getCartTotal( cartList ).toFixed( 2 ) }</td>
+                                                <td> { getCartTotal( cartList ).toFixed( 2 ) } FCFA</td>
                                             </tr>
                                         </tfoot>
                                     </table>

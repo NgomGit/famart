@@ -9,6 +9,17 @@ export function getCartTotal(items) {
     return total;
 }
 
+export function getCartItemsName(items) {
+    let name = "";
+    if (items) {
+        for (let i = 0; i < items.length; i++) {
+            name +=  items[i].qty + "x " + items[i]. name + ', '
+        }
+    }
+
+    return name.slice(0, name.length - 2);
+}
+
 /**
  * Util for making parallax background
  */

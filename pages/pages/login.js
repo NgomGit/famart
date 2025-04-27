@@ -1,36 +1,38 @@
 import ALink from "../../components/common/ALink";
-import {getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword,} from "firebase/auth";
-import {useEffect, useState} from "react";
+import {getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, onAuthStateChanged,} from "firebase/auth";
+import {useCallback, useEffect, useState} from "react";
 import {auth} from "../../lib/firebase";
 // import { redirect } from 'next/navigation'
 import { useRouter } from 'next/router';
+import { getUserByUID, saveUser } from "../../lib/firebase/firestore";
 
 export default function Login() {
-    // const auth = AppAuth.g
+
     const router = useRouter();
     const [currentUser, setCurrentUser] = useState()
     const [login, setLogin] = useState(true)
     const [errorMessage, setErrorMessage] = useState(null)
 
+    onAuthStateChanged(auth, (user) => {
+        if(user){
+            let uid = user.uid
+            getUserByUID(uid, (userDetails)=>{
+                console.log("User details is ", userDetails)
+                if(userDetails?.displayName == null){
+                    router.push({
+                        pathname:'/pages/account'
+                    })
+                }else{
+                    router.push({
+                        pathname:'/'
+                    })
+                }
 
-    useEffect( ()=>{
+            })
 
-        async function fetchCurrentUser() {
-            const user = await auth.currentUser
-            console.log("Login::::::: Current currentUser is ", user)
-            if(user?.displayName == null){
-                router.push({
-                    pathname:'/pages/account'
-                })
-            }else{
-                router.push({
-                    pathname:'/'
-                })
-            }
         }
+    });
 
-        fetchCurrentUser()
-    },[])
 
 
     const onUserChange = (key, value) =>{
@@ -47,16 +49,6 @@ export default function Login() {
                 // Signed in
                 const user = userCredential.user;
                 console.log("User log in is ", user)
-                if(!user.displayName){
-                    router.push({
-                        pathname:'/pages/account'
-                    })
-                }else{
-                    router.push({
-                        pathname:'/'
-                    })
-                }
-                // ...
             })
             .catch((error) => {
                 const errorCode = error.code;
@@ -71,16 +63,24 @@ export default function Login() {
     }
 
     const signInUser = ()=>{
-        const {email, password } = currentUser
+        const {email, password, phoneNumber} = currentUser
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 // Signed up
                 const user = userCredential.user;
-                // ...
                 console.log("Sign in user ", user)
-                router.push({
-                    pathname:'/pages/account'
-                })
+                const usr = {
+                    uid: user.uid,
+                    email: email,
+                    phoneNumber: phoneNumber,
+                    displayName: ""
+                }
+                saveUser(usr)
+                setTimeout(() => {
+                    router.push({
+                        pathname:'/pages/account'
+                    })
+                }, 500);
             })
             .catch((error) => {
                 const errorCode = error.code;
@@ -167,6 +167,13 @@ export default function Login() {
                                         <input type="email" value={currentUser?.email} onChange={(e) => {
                                             onUserChange('email', e.target.value)
                                         }} className="form-input form-wide" id="login-email" required/>
+
+                                        <label htmlFor="login-email">
+                                            Phone number <span className="required">*</span>
+                                        </label>
+                                        <input type="number" value={currentUser?.phoneNumber} onChange={(e) => {
+                                            onUserChange('phoneNumber', e.target.value)
+                                        }} className="form-input form-wide" id="login-phone" required/> 
 
                                         <label htmlFor="login-password">
                                             Password <span className="required">*</span>

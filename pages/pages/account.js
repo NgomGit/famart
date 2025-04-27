@@ -4,12 +4,14 @@ import StickyBox from 'react-sticky-box';
 import {useEffect, useState} from "react";
 import {auth} from "../../lib/firebase";
 import { useRouter } from 'next/router';
-import {getAuth, updateProfile, onAuthStateChanged} from "firebase/auth";
+import {getAuth, updateProfile, onAuthStateChanged, updatePhoneNumber, signOut} from "firebase/auth";
+import { getUserByUID, updateUserDetails } from "../../lib/firebase/firestore";
 
 
 export default function Account() {
     const router = useRouter()
     const [currentUser, setCurrentUser] = useState()
+    const [userDetails, setUserDetails] = useState()
     // const user =  auth.currentUser
 
     onAuthStateChanged(auth, (user) => {
@@ -24,12 +26,21 @@ export default function Account() {
             // User is signed out
             // ...
             navigateToPath('/pages/login')
-            console.log("onAuthStateChanged:::: ", user)
         }
     });
 
+    useEffect(()=>{
+
+        if(currentUser?.uid){
+            let uid = currentUser.uid
+            getUserByUID(uid, (details)=>{
+                console.log("user details are ", details)
+                setUserDetails(details)
+            })
+        }
+    },[currentUser])
+
     const navigateToPath = (pathName) =>{
-        console.log("Current user before navigating is ", user)
         if(!currentUser){
             router.push({
                 pathname: pathName
@@ -37,11 +48,17 @@ export default function Account() {
         }
     }
 
+    const logout = () =>{
+
+        signOut(auth)
+
+    }
+
 
     const onCurrentUserChange = (key, value) =>{
-        let temp = {...currentUser}
+        let temp = {...userDetails}
         temp[key] = value
-        setCurrentUser(temp);
+        setUserDetails(temp);
     }
 
     function controlDisplay() {
@@ -57,13 +74,9 @@ export default function Account() {
     }
 
     const updateCurrentUserInformations = () => {
-        const {displayName} = currentUser
-        console.log("user save is ", currentUser, "display name: ", displayName)
-        const user = auth.currentUser
-        updateProfile(auth.currentUser, {displayName});
-        // setTimeout(()=>{
-        //     navigateToPath('/')
-        // },200)
+        console.log("user details to update is ", userDetails)
+
+        updateUserDetails(userDetails.ref, userDetails, (data)=>{})
     }
 
 
@@ -117,7 +130,7 @@ export default function Account() {
                                         <ALink className="nav-link" href="/pages/wishlist">Favoris</ALink>
                                     </li>
                                     <li className="nav-item mb-3">
-                                        <ALink className="nav-link" href="/pages/login">Se déconnecter</ALink>
+                                        <ALink onItemClick={logout} className="nav-link" href="#">Se déconnecter</ALink>
                                     </li>
                                 </TabList>
                             </StickyBox>
@@ -155,13 +168,23 @@ export default function Account() {
                                         <div className="form-group mb-2">
                                             <label htmlFor="acc-text">Username <span className="required">*</span></label>
                                             <input type="text" className="form-control" id="acc-text" name="acc-text"
-                                                   value={currentUser?.displayName}
+                                                   value={userDetails?.displayName}
                                                    onChange={(e) =>{onCurrentUserChange('displayName', e.target.value)}}
                                                    placeholder="Editor" required />
                                             <p>C'est ainsi que votre nom sera affiché dans la section compte et dans les avis.</p>
                                         </div>
 
-                                        <div className="form-group mb-4">
+                                        <div className="form-group mb-2">
+                                            <label htmlFor="acc-phone">Phone Number<span className="required">*</span></label>
+                                            <input 
+                                                value={userDetails?.phoneNumber} 
+                                                type='number' className="form-control"
+                                                onChange={(e) =>{onCurrentUserChange('phoneNumber', e.target.value)}}
+                                                id="acc-phone" name="acc-phone"
+                                                placeholder="+221 77 777 77 77" required />
+                                        </div>
+
+                                        <div className="form-group mb-2">
                                             <label htmlFor="acc-email">Email<span className="required">*</span></label>
                                             <input disabled={true} value={currentUser?.email} type="email" className="form-control" id="acc-email" name="acc-email"
                                                    placeholder="editor@gmail.com" required />

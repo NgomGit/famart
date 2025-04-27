@@ -19,7 +19,6 @@ export default class MyDocument extends Document {
                     <link rel="stylesheet" type="text/css" href="/vendor/fontawesome-free/css/all.min.css" />
                     <link rel="stylesheet" type="text/css" href="/vendor/simple-line-icons/css/simple-line-icons.min.css" />
                     {/* <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> */}
-
                 </Head>
                 <body>
                     <Main />

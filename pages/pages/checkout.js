@@ -1,14 +1,85 @@
 import { connect } from 'react-redux';
-
+import { toast } from 'react-toastify';
 import SlideToggle from 'react-slide-toggle';
 import ALink from "../../components/common/ALink";
 import { getCartTotal } from '../../utils';
-import {initiatePayment} from "../../lib/paydunya";
+import { purchaseProduct } from '../../lib/paiement';
+import { useEffect, useState } from 'react';
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth } from '../../lib/firebase';
+import { Router, useRouter } from 'next/router';
+import { getUserByUID, updateUserPayment } from '../../lib/firebase/firestore';
+import PNotify from '../../components/features/notif/p-notify';
+
+
+// import {initiatePayment} from "../../lib/paydunya";
 
 function CheckOut ( { cartList } ) {
 
+    const [currentUser, setCurrentUser] = useState()
+    const [userDetails, setUserDetails] = useState()
+    const router = useRouter()
+    const query = router.query;
+
     const onCheckout = () =>{
-        initiatePayment()
+        purchaseProduct(cartList, userDetails)
+    }
+
+
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            // User is signed in, see docs for a list of available properties
+            // https://firebase.google.com/docs/reference/js/auth.user
+            const uid = user.uid;
+            setCurrentUser(user)
+            // ...
+        } else {
+            // User is signed out
+            // ...
+            navigateToPath('/pages/login')
+        }
+    });
+
+
+    useEffect(()=>{
+        if(currentUser?.uid){
+            let uid = currentUser.uid
+            getUserByUID(uid, (details)=>{
+                setUserDetails(details)
+            })
+        }
+        handlePaymentStatus(0)
+    },[currentUser])
+
+    useEffect(()=>{
+       console.log("Query received is ", JSON.stringify(query))
+       if(query?.paymentStatus){
+        const {paymentStatus, ref} = query
+        updateUserPayment(ref, paymentStatus, (result)=>{
+            console.log('Payment result is ', result)
+            handlePaymentStatus(paymentStatus)
+        })
+
+       }
+    },[query])
+
+    const handlePaymentStatus = (status) =>{
+        if(status == 0 ){
+            toast(
+                <PNotify title="Error" icon="fas fa-check" text="Paiement annulé." />,
+                {
+                    containerId: "default",
+                    className: "notification-error"
+                }
+            );
+        }
+    }
+
+    const navigateToPath = (pathName) =>{
+        console.log(" I was cliqued")
+        router.push({
+            pathname: pathName
+        })
     }
 
     return (
@@ -16,13 +87,13 @@ function CheckOut ( { cartList } ) {
             <div className="container checkout-container">
                 <ul className="checkout-progress-bar d-flex justify-content-center flex-wrap">
                     <li>
-                        <ALink href="cart">Shopping Cart</ALink >
+                        <ALink href="cart">Panier</ALink >
                     </li>
                     <li className="active">
-                        <ALink href="checkout">Checkout</ALink >
+                        <ALink href="checkout">Commande</ALink >
                     </li>
                     <li className="disabled">
-                        <ALink href="#">Order Complete</ALink >
+                        <ALink href="#">Commande Complete</ALink >
                     </li>
                 </ul>
                 {
@@ -38,7 +109,7 @@ function CheckOut ( { cartList } ) {
                         :
                         <>
                             <div className="checkout-discount">
-                                <SlideToggle duration={ 300 } collapsed >
+                                {/* <SlideToggle duration={ 300 } collapsed >
                                     { ( { onToggle, setCollapsibleElement, toggleState } ) => (
                                         <h4>Returning customer? <button className="btn btn-link btn-toggle" onClick={ onToggle }>Login</button>
                                             <div className="login-form-container" ref={ setCollapsibleElement } style={ { overflow: 'hidden' } }>
@@ -85,9 +156,10 @@ function CheckOut ( { cartList } ) {
                                             </div>
                                         </h4>
                                     ) }
-                                </SlideToggle >
+                                </SlideToggle > */}
+                                 <h4>Pour changer vos informations cliquer sur le bouton suivant ? <button className="btn btn-link btn-toggle" onClick={ ()=> navigateToPath('account') }> Mon profil</button></h4>
                             </div>
-                            <div className="checkout-discount">
+                            {/* <div className="checkout-discount">
                                 <SlideToggle duration={ 200 } collapsed >
                                     { ( { onToggle, setCollapsibleElement, toggleState } ) => (
                                         <h4>Have a coupon? <button className="btn btn-link btn-toggle" onClick={ onToggle }>ENTER YOUR CODE</button>
@@ -111,37 +183,37 @@ function CheckOut ( { cartList } ) {
                                         </h4>
                                     ) }
                                 </SlideToggle >
-                            </div>
+                            </div> */}
                             <div className="row">
                                 <div className="col-lg-7">
                                     <ul className="checkout-steps">
                                         <li>
-                                            <h2 className="step-title">Billing details</h2>
+                                            <h2 className="step-title">Vos informations</h2>
 
                                             <form action="#" id="checkout-form">
                                                 <div className="row">
                                                     <div className="col-md-6">
                                                         <div className="form-group">
-                                                            <label>First name <abbr className="required" title="required">*</abbr>
+                                                            <label>Prénom <abbr className="required" title="required">*</abbr>
                                                             </label>
-                                                            <input type="text" className="form-control" required />
+                                                            <input disabled value={userDetails?.displayName?.split(' ')?.[0]} type="text" className="form-control" required />
                                                         </div>
                                                     </div>
 
                                                     <div className="col-md-6">
                                                         <div className="form-group">
-                                                            <label>Last name <abbr className="required" title="required">*</abbr></label>
-                                                            <input type="text" className="form-control" required />
+                                                            <label>Nom <abbr className="required" title="required">*</abbr></label>
+                                                            <input disabled value={userDetails?.displayName?.split(' ')?.[1]} type="text" className="form-control" required />
                                                         </div>
                                                     </div>
                                                 </div>
 
-                                                <div className="form-group">
+                                                {/* <div className="form-group">
                                                     <label>Company name (optional)</label>
                                                     <input type="text" className="form-control" />
-                                                </div>
+                                                </div> */}
 
-                                                <div className="select-custom">
+                                                {/* <div className="select-custom">
                                                     <label>Country / Region <abbr className="required" title="required">*</abbr></label>
                                                     <select name="orderby" className="form-control">
                                                         <option value="" defaultValue="selected">Vanuatu
@@ -152,20 +224,20 @@ function CheckOut ( { cartList } ) {
                                                         <option value="4">Burundi</option>
                                                         <option value="5">Cameroon</option>
                                                     </select>
-                                                </div>
+                                                </div> */}
 
-                                                <div className="form-group mb-1 pb-2">
+                                                {/* <div className="form-group mb-1 pb-2">
                                                     <label>Street address <abbr className="required" title="required">*</abbr></label>
                                                     <input type="text" className="form-control"
                                                         placeholder="House number and street name" required />
-                                                </div>
+                                                </div> */}
 
-                                                <div className="form-group">
+                                                {/* <div className="form-group">
                                                     <input type="text" className="form-control"
                                                         placeholder="Apartment, suite, unite, etc. (optional)" required />
-                                                </div>
+                                                </div> */}
 
-                                                <div className="form-group">
+                                                {/* <div className="form-group">
                                                     <label>Town / City <abbr className="required" title="required">*</abbr></label>
                                                     <input type="text" className="form-control" required />
                                                 </div>
@@ -180,23 +252,23 @@ function CheckOut ( { cartList } ) {
                                                         <option value="4">Burundi</option>
                                                         <option value="5">Cameroon</option>
                                                     </select>
-                                                </div>
+                                                </div> */}
 
-                                                <div className="form-group">
+                                                {/* <div className="form-group">
                                                     <label>Postcode / Zip <abbr className="required" title="required">*</abbr></label>
                                                     <input type="text" className="form-control" required />
+                                                </div> */}
+
+                                                <div className="form-group">
+                                                    <label>Numéro téléphone <abbr className="required" title="required">*</abbr></label>
+                                                    <input disabled value={userDetails?.phoneNumber} type="tel" className="form-control" required />
                                                 </div>
 
                                                 <div className="form-group">
-                                                    <label>Phone <abbr className="required" title="required">*</abbr></label>
-                                                    <input type="tel" className="form-control" required />
+                                                    <label>Email: <abbr className="required" title="required">*</abbr></label>
+                                                    <input disabled value={userDetails?.email} type="email" className="form-control" required />
                                                 </div>
-
-                                                <div className="form-group">
-                                                    <label>Email address <abbr className="required" title="required">*</abbr></label>
-                                                    <input type="email" className="form-control" required />
-                                                </div>
-                                                <SlideToggle duration={ 200 } collapsed >
+                                                {/* <SlideToggle duration={ 200 } collapsed >
                                                     { ( { onToggle, setCollapsibleElement } ) => (
                                                         <div className="form-group mb-1">
                                                             <div className="custom-control custom-checkbox">
@@ -210,8 +282,8 @@ function CheckOut ( { cartList } ) {
                                                             </div>
                                                         </div>
                                                     ) }
-                                                </SlideToggle >
-                                                <SlideToggle duration={ 300 } collapsed >
+                                                </SlideToggle > */}
+                                                {/* <SlideToggle duration={ 300 } collapsed >
                                                     { ( { onToggle, setCollapsibleElement } ) => (
                                                         <div className="form-group mb-11">
                                                             <div className="custom-control custom-checkbox mt-0 address-box">
@@ -295,14 +367,8 @@ function CheckOut ( { cartList } ) {
                                                             </div>
                                                         </div>
                                                     ) }
-                                                </SlideToggle >
+                                                </SlideToggle > */}
 
-                                                <div className="form-group">
-                                                    <label className="order-comments">Order notes (optional)</label>
-                                                    <textarea className="form-control"
-                                                        placeholder="Notes about your order, e.g. special notes for delivery."
-                                                        required></textarea>
-                                                </div>
                                             </form>
                                         </li>
                                     </ul>
@@ -310,12 +376,12 @@ function CheckOut ( { cartList } ) {
 
                                 <div className="col-lg-5">
                                     <div className="order-summary">
-                                        <h3>YOUR ORDER</h3>
+                                        <h3>Votre commande</h3>
 
                                         <table className="table table-mini-cart">
                                             <thead>
                                                 <tr>
-                                                    <th colSpan="2">Product</th>
+                                                    <th colSpan="2">Produit</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -329,7 +395,7 @@ function CheckOut ( { cartList } ) {
                                                             </td>
 
                                                             <td className="price-col">
-                                                                <span>${ item.price.toFixed( 2 ) }</span>
+                                                                <span>{ item.price.toFixed( 2 ) } FCFA</span>
                                                             </td>
                                                         </tr>
                                                     ) )
@@ -338,28 +404,28 @@ function CheckOut ( { cartList } ) {
                                             <tfoot>
                                                 <tr className="cart-subtotal">
                                                     <td>
-                                                        <h4>Subtotal</h4>
+                                                        <h4>Sous total</h4>
                                                     </td>
 
                                                     <td className="price-col">
-                                                        <span>${ getCartTotal( cartList ).toFixed( 2 ) }</span>
+                                                        <span>{ getCartTotal( cartList ).toFixed( 2 ) } FCFA</span>
                                                     </td>
                                                 </tr>
                                                 <tr className="order-shipping">
                                                     <td className="text-left" colSpan="2">
-                                                        <h4 className="m-b-sm">Shipping</h4>
+                                                        <h4 className="m-b-sm">Livraison</h4>
                                                         <div className="form-group form-group-custom-control">
                                                             <div className="custom-control custom-radio d-flex">
                                                                 <input type="radio" className="custom-control-input" name="radio"
                                                                     defaultChecked />
-                                                                <label className="custom-control-label">Local Pickup</label>
+                                                                <label className="custom-control-label">National</label>
                                                             </div>
                                                         </div>
 
                                                         <div className="form-group form-group-custom-control mb-0">
                                                             <div className="custom-control custom-radio mb-0 d-flex">
                                                                 <input type="radio" name="radio" className="custom-control-input" />
-                                                                <label className="custom-control-label">Flat Rate</label>
+                                                                <label className="custom-control-label">International</label>
                                                             </div>
                                                         </div>
                                                     </td>
@@ -370,26 +436,23 @@ function CheckOut ( { cartList } ) {
                                                         <h4>Total</h4>
                                                     </td>
                                                     <td>
-                                                        <b className="total-price"><span>${ getCartTotal( cartList ).toFixed( 2 ) }</span></b>
+                                                        <b className="total-price"><span>{ getCartTotal( cartList ).toFixed( 2 ) } FCFA</span></b>
                                                     </td>
                                                 </tr>
                                             </tfoot>
                                         </table>
 
                                         <div className="payment-methods">
-                                            <h4 className="">Payment methods</h4>
+                                            <h4 className="">Méthodes de paiements</h4>
                                             <div className="info-box with-icon p-0">
                                                 <p>
-                                                    Sorry, it seems that there are no available
-                                                    payment methods for your state. Please
-                                                    contact us if you require assistance or wish
-                                                    to make alternate arrangements.
+                                                   Wave, Orange Money, Carte bancaire.
                                                 </p>
                                             </div>
                                         </div>
 
                                         <button type="submit" onClick={onCheckout} className="btn btn-dark btn-place-order" form="checkout-form">
-                                            Place order
+                                            Confirmer la commande
                                         </button>
                                     </div>
                                 </div>
