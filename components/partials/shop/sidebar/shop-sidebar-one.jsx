@@ -35,6 +35,8 @@ function ShopSidebarOne ( props ) {
     const [features, setFeatures] = useState([])
     const [loading, setLoading] = useState(true)
     const [categories, setCategories] = useState([])
+    const [selectedCats, setSelectedCats] = useState([])
+
 
     // const categories = useMemo( () => {
     //     let cats = data ? data.shopSidebarData.categories : [];
@@ -110,9 +112,14 @@ function ShopSidebarOne ( props ) {
     function onChangePriceRange ( value ) {
         setRange( value );
     }
+    // function filterByCategory ( selected ) {
+    //     router.push( router.pathname.replace( '[grid]', query.grid ) + '?category=' + ( selected.length ? selected[ 0 ] : '' ) );
+    // }
 
     function filterByCategory ( selected ) {
-        router.push( router.pathname.replace( '[grid]', query.grid ) + '?category=' + ( selected.length ? selected[ 0 ] : '' ) );
+        console.log("Selected ", selected)
+        setSelectedCats(selected)
+        router.push( router.pathname.replace( '[grid]', query.grid ) + '?category=' + (selected !== "default" ?selected : ''));
     }
 
     function containsAttrInUrl ( type, value ) {
@@ -159,7 +166,7 @@ function ShopSidebarOne ( props ) {
                                     </h3>
                                     <div className="overflow-hidden" ref={ setCollapsibleElement }>
                                         <div className="widget-body">
-                                            <Tree
+                                            {/* <Tree
                                                 className="no-icon cat-list border-0"
                                                 selectable={ true }
                                                 showIcon={ false }
@@ -173,7 +180,13 @@ function ShopSidebarOne ( props ) {
                                                 selectedKeys={ query.category ? [ query.category ] : [] }
                                                 treeData={ categories }
                                                 onSelect={ filterByCategory }
-                                            />
+                                            /> */}
+                                            <select className="form-control form-control-sm" value={ selectedCats } onChange={ e => filterByCategory( e.target.value) }>
+                                                <option value={"default"}>Toutes</option>
+                                                {categories.map((cat, index)=>
+                                                    <option value={cat.slug}>{cat.name}</option>
+                                                )}
+                                            </select>
                                         </div>
                                     </div>
                                 </>

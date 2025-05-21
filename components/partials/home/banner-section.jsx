@@ -30,7 +30,7 @@ export default function BannerSection () {
                         </div>
                         <div className="banner col-md-4">
                             <div className="banner-content text-left">
-                                <h3 className="banner-title m-b-1">Chaussures Shoes</h3>
+                                <h3 className="banner-title m-b-1">Chaussures</h3>
                                 <p>12 Produits</p>
                                 <hr className="divider-short-thick" />
 

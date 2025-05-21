@@ -37,7 +37,7 @@ function ProductWidgetContainer ( props ) {
                                 :
 
                                 <>
-                                    <h4 className="section-sub-title">Featured Products</h4>
+                                    <h4 className="section-sub-title">Produits spécials</h4>
                                     {
                                         featured.slice( 0, 3 ).map( ( product, index ) => (
                                             <ProductThree product={ product } key={ `ProductThree`, index } />
@@ -57,7 +57,7 @@ function ProductWidgetContainer ( props ) {
                                 :
 
                                 <>
-                                    <h4 className="section-sub-title">Best Selling Products</h4>
+                                    <h4 className="section-sub-title">Les plus demandés</h4>
                                     {
                                         bestSelling.slice( 0, 3 ).map( ( product, index ) => (
                                             <ProductThree product={ product } key={ `ProductThree`, index } />

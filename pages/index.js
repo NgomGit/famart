@@ -71,7 +71,7 @@ function Home () {
                 <FeatureBoxSection />
 
                 <div className="container mb-4 mb-lg-6">
-                    <LoadMoreProducts products={ products } perPage={ 4 } total={ total } />
+                    <LoadMoreProducts products={ features } perPage={ 4 } total={ total } />
 
                     <hr className="mb-4 pb-1" />
 
@@ -89,7 +89,7 @@ function Home () {
                     <ProductWidgetContainer featured={ features } latest={ latest } bestSelling={ features } topRated={ latest } loading={ loading } />
                 </div>
 
-                <BlogSection blog={ blog } loading={ loading } />
+                {/* <BlogSection blog={ blog } loading={ loading } /> */}
 
                 {/* <BrandSection /> */}
 

@@ -49,12 +49,12 @@ export default function ProductThree ( props ) {
                 <div className="price-box">
                     {
                         product.price == product.sale_price ?
-                            <span className="product-price">{ '$' + product.price.toFixed( 2 ) }</span>
+                            <span className="product-price">{ 'XOF ' + product.price.toFixed( 2 ) }</span>
                             : product.variants.length > 0 ?
-                                <span className="product-price">{ '$' + product.price.toFixed( 2 ) } &ndash; { '$' + product.sale_price.toFixed( 2 ) }</span>
+                                <span className="product-price">{ 'XOF ' + product.price.toFixed( 2 ) } &ndash; { 'XOF ' + product.sale_price.toFixed( 2 ) }</span>
                                 : <>
-                                    <span className="old-price">{ '$' + product.sale_price.toFixed( 2 ) }</span>
-                                    <span className="product-price">{ '$' + product.price.toFixed( 2 ) }</span>
+                                    <span className="old-price">{ 'XOF ' + product.sale_price.toFixed( 2 ) }</span>
+                                    <span className="product-price">{ 'XOF ' + product.price.toFixed( 2 ) }</span>
                                 </>
                     }
                 </div>

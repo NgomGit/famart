@@ -87,7 +87,7 @@ function ProductDefault () {
                 </div>
 
                 <SingleTabFive product={ product } isCustomTab={ true } />
-                <RelatedProducts products={ related } loading={ loading } />
+                {/* <RelatedProducts products={ related } loading={ loading } /> */}
 
                 <hr className="mt-0 mb-5" />
             </div>

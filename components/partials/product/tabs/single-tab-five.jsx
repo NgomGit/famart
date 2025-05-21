@@ -27,7 +27,7 @@ export default function SingleTabFive ( props ) {
                             <Tab className="nav-item">
                                 <ALink href="#" className="nav-link">Description</ALink>
                             </Tab>
-                            <Tab className="nav-item">
+                            {/* <Tab className="nav-item">
                                 <ALink href="#" className="nav-link">Size Guide</ALink>
                             </Tab>
                             <Tab className="nav-item">
@@ -39,24 +39,24 @@ export default function SingleTabFive ( props ) {
                                         <ALink href="#" className="nav-link">Custom Tab</ALink>
                                     </Tab>
                                     : ''
-                            }
+                            } */}
                         </TabList>
 
                         <TabPanel className="tab-pane fade">
                             <div className="product-desc-content">
                                 <p>{ product.short_description }</p>
-                                <ul>
+                                {/* <ul>
                                     <li>Any Product types that You want - Simple, Configurable</li>
                                     <li>Downloadable/Digital Products, Virtual Products</li>
                                     <li>Inventory Management with Backordered items</li>
-                                </ul>
-                                <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+                                </ul> */}
+                                <p>{ product.description } </p>
                             </div>
                         </TabPanel>
 
                         <TabPanel className="tab-pane fade">
                             <div className="product-size-content">
-                                <div className="row">
+                                {/* <div className="row">
                                     <div className="col-md-4">
                                         <img src="images/products/single/body-shape.png" alt="body shape" width="217" height="398" />
                                     </div>
@@ -111,7 +111,7 @@ export default function SingleTabFive ( props ) {
                                             </tbody>
                                         </table>
                                     </div>
-                                </div>
+                                </div> */}
                             </div>
                         </TabPanel>
 
