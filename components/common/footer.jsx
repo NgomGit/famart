@@ -14,12 +14,12 @@ function Footer () {
                                 <ul className="contact-info">
                                     <li>
                                         <i className="icon-direction"></i>
-                                        <span className="contact-info-label">Address</span>123 Street Name, City, England
+                                        <span className="contact-info-label">Adresse</span>Dakar, Sandaga
                                     </li>
                                     <li>
                                         <i className="icon-phone-1"></i>
-                                        <span className="contact-info-label">Phone</span>Toll Free <a href="tel:">(123)
-                                            456-7890</a>
+                                        <span className="contact-info-label">Téléphone</span><a href="tel:">(+221)
+                                            77 424 24 00</a>
                                     </li>
                                     <li>
                                         <i className="icon-envolope"></i>
@@ -34,19 +34,19 @@ function Footer () {
                             <div className="row">
                                 <div className="col-sm-5 col-md-5 col-lg-3">
                                     <div className="widget">
-                                        <h4 className="widget-title">Account</h4>
+                                        <h4 className="widget-title">Lien utiles</h4>
 
                                         <ul className="links">
                                             <li><ALink href="/pages/about-us">About us</ALink></li>
-                                            <li><ALink href="/pages/contact-us">Contact us</ALink></li>
-                                            <li><ALink href="/pages/account">My Account</ALink></li>
-                                            <li><ALink href="#">Order history</ALink></li>
-                                            <li><ALink href="#">Advanced search</ALink></li>
+                                            <li><ALink href="/pages/contact-us">Contacter nous</ALink></li>
+                                            <li><ALink href="/pages/account">Mon Compte</ALink></li>
+                                            <li><ALink href="/pages/wishlist">Mes Favoris</ALink></li>
+                                            {/* <li><ALink href="#">Advanced search</ALink></li> */}
                                         </ul>
                                     </div>
                                 </div>
 
-                                <div className="col-sm-7 col-md-7 col-lg-4">
+                                {/* <div className="col-sm-7 col-md-7 col-lg-4">
                                     <div className="widget">
                                         <h4 className="widget-title">MAIN FEATURES</h4>
                                         <ul className="links">
@@ -57,7 +57,7 @@ function Footer () {
                                             <li><ALink href="#">Mobile & Retina Optimized</ALink></li>
                                         </ul>
                                     </div>
-                                </div>
+                                </div> */}
 
                                 <div className="col-md-12 col-lg-5">
                                     <div className="widget widget-newsletter">
@@ -81,7 +81,7 @@ function Footer () {
                 </div>
 
                 <div className="footer-bottom d-flex flex-column flex-lg-row align-items-sm-center">
-                    <p className="footer-copyright mb-lg-0">&copy; Porto eCommerce. 2021. All Rights Reserved</p>
+                    <p className="footer-copyright mb-lg-0">&copy; FamaArt. 2025. All Rights Reserved</p>
 
                     <div className="social-icons ml-lg-auto mr-1">
                         <ALink href="#" className="social-icon social-facebook icon-facebook"

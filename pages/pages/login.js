@@ -44,6 +44,7 @@ export default function Login() {
 
     const logInUser = () => {
         const {email, password } = currentUser
+        console.log("Email and password are ", email, password)
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 // Signed in
@@ -97,10 +98,10 @@ export default function Login() {
                     <nav aria-label="breadcrumb" className="breadcrumb-nav">
                         <div className="container">
                             <ol className="breadcrumb">
-                                <li className="breadcrumb-item"><ALink href="/">Home</ALink></li>
-                                <li className="breadcrumb-item"><ALink href="/shop">Shop</ALink></li>
+                                <li className="breadcrumb-item"><ALink href="/">Accueil</ALink></li>
+                                <li className="breadcrumb-item"><ALink href="/shop">Boutique</ALink></li>
                                 <li className="breadcrumb-item active" aria-current="page">
-                                    My Account
+                                    Mon Compte
                             </li>
                             </ol>
                         </div>
@@ -143,13 +144,13 @@ export default function Login() {
                                         {/*<div className="custom-control custom-checkbox mb-0">*/}
                                         {/*    <input type="checkbox" className="custom-control-input" id="lost-password"/>*/}
                                         {/*</div>*/}
-                                        <label className="mb-0" htmlFor="lost-password">Pas encore membre ?
+                                        <label className="mb-0" >Pas encore membre ?
                                         </label>
                                         <ALink href={"#"} onItemClick={() => setLogin(false)}
                                                className="forget-password text-dark form-footer-right">Créer un compte
                                             Password?</ALink>
                                     </div>
-                                    <button type="submit" onClick={() => logInUser} className="btn btn-dark btn-md w-100">
+                                    <button onClick={() => logInUser ()} className="btn btn-dark btn-md w-100">
                                         Se Connecter
                                     </button>
                                 </form>
@@ -189,13 +190,13 @@ export default function Login() {
                                             {/*    /!*    me</label>*!/*/}
                                             {/*</div>*/}
 
-                                            <label className="mb-0" htmlFor="lost-password">Déja membre ?
+                                            <label className="mb-0" >Déja membre ?
                                             </label>
                                             <ALink href={"#"} onItemClick={() => setLogin(true)}
                                                    className="forget-password text-dark form-footer-right">Se connecter à mon compte
                                             </ALink>
                                         </div>
-                                        <button type="submit" onClick={signInUser} className="btn btn-dark btn-md w-100">
+                                        <button type="submit" onClick={ () => signInUser ()} className="btn btn-dark btn-md w-100">
                                             Créer mon compte
                                         </button>
                                     </form>
