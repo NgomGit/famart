@@ -132,7 +132,7 @@ function SingleTab ( props ) {
                                                                     <div className="ratings-container float-sm-right">
                                                                         <div className="product-ratings">
                                                                             <span className="ratings" style={ { width: `${ 20 * product.ratings }%` } }></span>
-                                                                            <span className="tooltiptext tooltip-top">{ product.ratings.toFixed( 2 ) }</span>
+                                                                            {/* <span className="tooltiptext tooltip-top">{ product.ratings.toFixed( 2 ) }</span> */}
                                                                         </div>
                                                                     </div>
 

@@ -116,7 +116,7 @@ function ProductTwo ( props ) {
                 <div className="ratings-container">
                     <div className="product-ratings">
                         <span className="ratings" style={ { width: 20 * product.ratings + '%' } }></span>
-                        <span className="tooltiptext tooltip-top">{ product.ratings.toFixed( 2 ) }</span>
+                        {/* <span className="tooltiptext tooltip-top">{ product.ratings.toFixed( 2 ) }</span> */}
                     </div>
                 </div>
 
