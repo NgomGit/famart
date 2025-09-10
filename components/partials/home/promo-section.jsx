@@ -18,20 +18,20 @@ function PromoSection () {
     }, [] )
 
     return (
-        <div className="promo-section overflow-hidden parallax mb-5" style={ { backgroundImage: "url(images/home/banners/parallax_bg.jpg)" } }>
+        <div className="promo-section overflow-hidden parallax mb-5" style={ { backgroundImage: "url(images/home/banners/parallax_bg.png)" } }>
             <div className="promo-content">
                 <Reveal keyframes={ fadeInUpShorter } delay={ 200 } duration={ 1000 } triggerOnce>
                     <h2 className="m-b-1">
-                        New Season Sale</h2>
+                        Acheter nos sacs personalisables avec</h2>
                 </Reveal>
                 <Reveal keyframes={ fadeInUpShorter } delay={ 400 } duration={ 1000 } triggerOnce>
-                    <h3 className="mb-1">40% OFF</h3>
+                    <h3 className="mb-1">10% de réduction</h3>
                 </Reveal>
                 <Reveal keyframes={ fadeInUpShorter } delay={ 600 } duration={ 1000 } triggerOnce>
                     <hr className="divider-short-thick" />
                 </Reveal>
                 <Reveal keyframes={ fadeInUpShorter } delay={ 800 } duration={ 1000 } triggerOnce>
-                    <ALink href="/shop" className="btn btn-light">Shop Now <i className="fas fa-long-arrow-alt-right ml-2 pl-1"></i></ALink>
+                    <ALink href="/shop" className="btn btn-light">Acheter maintenant <i className="fas fa-long-arrow-alt-right ml-2 pl-1"></i></ALink>
                 </Reveal>
             </div>
         </div >

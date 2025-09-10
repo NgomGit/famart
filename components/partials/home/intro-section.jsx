@@ -20,14 +20,14 @@ export default function IntroSection() {
                         <div className="banner-layer banner-layer-right float-right">
                             <Reveal keyframes={fadeInUpShorter} delay={200} duration={1000}>
                                 <>
-                                    <h2>New Season Dresses</h2>
-                                    <h3 className="text-uppercase rotated-upto-text mb-0"><small>Up to</small>50% off</h3>
+                                    <h2>Vétements, sacs, chaussures à moindre coût</h2>
+                                    <h3 className="text-uppercase rotated-upto-text mb-0"><small>Avec</small>30% off</h3>
 
                                     <hr className="divider-short-thick" />
 
-                                    <h5 className="text-uppercase d-inline-block mb-0 ls-n-20">Starting at <span>$<em>39</em>99</span></h5>
+                                    <h5 className="text-uppercase d-inline-block mb-0 ls-n-20">Apartir de <span><em>8000</em>FCFA</span></h5>
                                     <ALink href="/shop" className="btn btn-light btn-xl btn-icon-right"
-                                        role="button">Shop Now <i className="fas fa-long-arrow-alt-right"></i></ALink>
+                                        role="button">Acheter Maintenant <i className="fas fa-long-arrow-alt-right"></i></ALink>
                                 </>
                             </Reveal>
                         </div>
@@ -38,14 +38,14 @@ export default function IntroSection() {
                         <div className="banner-layer banner-layer-left float-left">
                             <Reveal keyframes={fadeInUpShorter} delay={200} duration={1000}>
                                 <>
-                                    <h2>New Season Hats</h2>
-                                    <h3 className="text-uppercase rotated-upto-text mb-0"><small>Up to</small>20% off</h3>
+                                    <h2>Livraison partout au Sénégal et en Europe</h2>
+                                    <h3 className="text-uppercase rotated-upto-text mb-0"><small>Avec</small>20% off</h3>
 
                                     <hr className="divider-short-thick" />
 
-                                    <h5 className="text-uppercase d-inline-block mb-0 ls-n-20">Starting at <span>$<em>19</em>99</span></h5>
+                                    <h5 className="text-uppercase d-inline-block mb-0 ls-n-20">Apartir de <span><em>10000</em>FCFA</span></h5>
                                     <ALink href="/shop" className="btn btn-light btn-xl btn-icon-right"
-                                        role="button">Shop Now <i className="fas fa-long-arrow-alt-right"></i></ALink>
+                                        role="button">Commander maintenant <i className="fas fa-long-arrow-alt-right"></i></ALink>
                                 </>
                             </Reveal>
                         </div>
