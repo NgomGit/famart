@@ -1,11 +1,9 @@
-import { useQuery } from "@apollo/react-hooks";
+
 
 // Import Apollo Server and Query
 import withApollo from '../server/apollo';
-import { GET_HOME_DATA } from '../server/queries';
 
 // Import Custom Component
-import NewsletterModal from "../components/features/modals/newsletter-modal";
 import LoadMoreProducts from "../components/partials/home/load-more-product";
 import TopRatedCollection from "../components/partials/home/top-product-collection";
 import IntroSection from "../components/partials/home/intro-section";
@@ -14,7 +12,6 @@ import BannerSection from "../components/partials/home/banner-section";
 import FeatureBoxSection from "../components/partials/home/featurebox-section";
 import PromoSection from "../components/partials/home/promo-section";
 import ProductWidgetContainer from "../components/partials/home/product-widget-container";
-import BlogSection from '../components/partials/home/blog-section';
 import { useState } from "react";
 import { useEffect } from "react";
 import { getFeaturedProducts, getLatestProducts } from '../lib/firebase/firestore';

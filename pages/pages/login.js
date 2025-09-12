@@ -65,6 +65,7 @@ export default function Login() {
             .then((userCredential) => {
                 // Signed up
                 const user = userCredential.user;
+
                 const usr = {
                     uid: user.uid,
                     email: email,
@@ -81,6 +82,7 @@ export default function Login() {
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
+                console.log("Sign in user error ", errorMessage, errorCode)
                 // ..
             });
     }
