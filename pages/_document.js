@@ -11,11 +11,11 @@ export default class MyDocument extends Document {
             <Html lang="en">
                 <Head>
                     <base href="" />
-                    { process.env.NODE_ENV === "production" ? <title>FamaArts</title> : "" }
+                    { process.env.NODE_ENV === "production" ? <title> Sac en Wax | FamaArts</title> : "" }
 
                     <meta
                         name="description"
-                        content="Achetez des sacs, chapeaux, vétements et accéssoires africains faits main au Sénégal. Cuir et tissus traditionnels, artisanat authentique. Livraison rapide dans le monde entier."
+                        content="Découvrez nos sacs en wax, chapeaux, vétements et accéssoires africains faits main au Sénégal. Cuir et tissus traditionnels, artisanat authentique. Livraison rapide dans le monde entier."
                     />
                     <link rel="icon" href="favicon.png" />
                     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:200,300,400,500,600,700,800%7CPoppins:200,300,400,500,600,700,800%7COswald:300,400,600,700" />

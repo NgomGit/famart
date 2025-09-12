@@ -14,7 +14,7 @@ export default function ProductNav ( props ) {
                             <span className="box-content">
                                 <img
                                     src={ process.env.NEXT_PUBLIC_ASSET_URI + prev.small_pictures[ 0 ].url }
-                                    alt="product"
+                                    alt={prev.short_desc ?? ""}
                                     width={ prev.small_pictures[ 0 ].width }
                                     height={ prev.small_pictures[ 0 ].height }
                                 />

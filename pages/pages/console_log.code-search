@@ -1,0 +1,131 @@
+# Query: console.log
+
+82 results - 23 files
+
+adminpanel/scripts/build.js:
+   72:         console.log(chalk.yellow('Compiled with warnings.\n'));
+   73:         console.log(warnings.join('\n\n'));
+   74:         console.log(
+   79:         console.log(
+   85:         console.log(chalk.green('Compiled successfully.\n'));
+   88:       console.log('File sizes after gzip:\n');
+   96:       console.log();
+  111:       console.log(chalk.red('Failed to compile.\n'));
+  118:       console.log(err.message);
+  125:   console.log('Creating an optimized production build...');
+  158:         console.log(
+
+adminpanel/scripts/start.js:
+   47:   console.log(
+   54:   console.log(
+   57:   console.log(
+   60:   console.log();
+   94:         return console.log( err );
+   99:       console.log( chalk.cyan( 'Starting the development server...\n' ) );
+  112:       console.log( err.message );
+
+adminpanel/src/components/features/galery/index.js:
+  22:           console.log('ThumbClick', JSON.stringify(data));
+
+adminpanel/src/components/features/modals/media-gallery-modal.jsx:
+  40:     //         console.log("Images are ", items)
+  47:         console.log(" I am called to format images ", images)
+  66:         console.log("Images received is ", data)
+
+adminpanel/src/components/features/upload/index.jsx:
+  17:               console.log('Upload successful:', result.info);
+  24:         console.log("window is ", window.cloudinary)
+  34:     console.log("I was clicked to be honest",window.cloudinary,  uploadWidgetRef.current)
+
+adminpanel/src/components/pages/dashboard.jsx:
+  36:     console.log("PUBLIC URL ", process.env.PUBLIC_URL)
+
+adminpanel/src/components/pages/media/media-add.jsx:
+  55:         console.log("Files upload are ", files)
+
+adminpanel/src/components/pages/media/media-grid.jsx:
+  33:       console.log("Cloudinary image is ", cld.image("product_images/w9s73xlqghq27wtswp0r"))
+  39:         console.log("Images received is ", data)
+  84:     //         console.log("Items images ", items)
+
+adminpanel/src/components/pages/products/product-add.jsx:
+   92:             console.log("Categories from firestore ", cats)
+  106:         console.log("Index: ", index, "value: ", !value)
+
+adminpanel/src/components/pages/products/product-detail.jsx:
+  109:         console.log("Ref ", props.match.params.id)
+  112:             console.log("product ", product)
+  125:             console.log("Categories from firestore ", cats,product.categories )
+  149:         console.log("Tdmp categories are ", temp)
+  168:         console.log("Media ", media)
+  177:         console.log("Product is ", product)
+  179:             console.log("Everything is going well")
+  249:             console.log("Everything is going well")
+  338:         console.log("Temp is ", temp)
+  451:         console.log("Index: ", index, "value: ", !value)
+
+adminpanel/src/components/pages/products/product-list.jsx:
+  240:             console.log("Results ",results)
+  249:             console.log("Do what ever you want of ", result)
+  252:         console.log("Id is ", id, "Value is ", value)
+
+adminpanel/src/lib/firebase/firestore.js:
+  10: //      console.log("Document written with ID: ", docRef.id);
+  12: //  console.log("La taille du tableau est ", CATEGORIES.length)
+  18:     console.log("Filters applied ", filters)
+  55:     console.log("Document written with ID: ", docRef.id);
+
+adminpanel/src/lib/firebase/storage.js:
+  49:             console.log('Uploaded a blob or file!');
+  50:             console.log("Snapchot is ", snapshot)
+  53:         console.log("Error received is ", error)
+  54:         console.log("Error response is ", error.response, error.data)
+  66:         console.log("File deleted successfully")
+  68:         console.log("Error deleting file ", error)
+  76:     console.log("Image url ", imageUrl)
+
+api/server.js:
+  22:     console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`);
+
+front/components/partials/product/details/product-detail-one.jsx:
+  95:         console.log("product clicked is ", product)
+
+front/components/partials/shop/sidebar/shop-sidebar-one.jsx:
+  120:         console.log("Selected ", selected)
+
+front/lib/firebase/firestore.js:
+   12: //     console.log("Document written with ID: ", docRef.id);
+   14:         console.log("La taille du tableau est ", PRODUCTS.length)
+   40:       console.log(`${doc.id} => ${doc.data()}`);
+   47:             console.log("Error: The callback parameter is not a function");
+   72:         console.log("Filters applied ", filters)
+   97:     console.log("Document written with ID: ", docRef.id);
+  108:         console.log("Document written with ID: ", docRef.id);
+
+front/lib/firebase/storage.js:
+  13:             console.log("Error: The callback parameter is not a function");
+  26:         console.log('Upload is ' + progress + '% done');
+  29:             console.log('Upload is paused');
+  32:             console.log('Upload is running');
+  60:         console.log('File available at', downloadURL);
+
+front/lib/paiement/index.js:
+  52:         console.log("purchaseProduct::: ", jsonResponse)
+
+front/lib/paydunya/index.js:
+  15:             console.log("Response paydunya is ", resp)
+  17:             console.log("Error is ", error)
+
+front/pages/pages/account.js:
+  22:             console.log("onAuthStateChanged:::: ", user)
+  37:                 console.log("user details are ", details)
+  77:         console.log("user details to update is ", userDetails)
+
+front/pages/pages/checkout.js:
+  54:        console.log("Query received is ", JSON.stringify(query))
+  58:             console.log('Payment result is ', result)
+  89:         console.log(" I was cliqued")
+
+front/pages/pages/product-add.jsx:
+   92:             //console.log("Categories from firestore ", cats)
+  106:         //console.log("Index: ", index, "value: ", !value)

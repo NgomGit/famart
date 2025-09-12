@@ -75,7 +75,7 @@ function Cart ( props ) {
                                                         <td>
                                                             <figure className="product-image-container">
                                                                 <ALink href={ `/product/default/${item.slug}` } className="product-image">
-                                                                    <img src={ item.pictures[ 0 ].url } alt="product" />
+                                                                    <img src={ item.pictures[ 0 ].url } alt={item.short_desc} />
                                                                 </ALink>
 
                                                                 <a href="#" className="btn-remove icon-cancel" title="Remove Product" onClick={ ( e ) => { e.preventDefault(); removeFromCart( item, index ); } }></a>

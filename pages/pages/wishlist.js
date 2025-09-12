@@ -93,7 +93,7 @@ function Wishlist(props) {
                                                     <figure className="product-image-container">
                                                         <ALink href={`/product/default/${item.slug}`} className="product-image">
                                                             <LazyLoadImage
-                                                                alt="product"
+                                                                alt={item.short_desc}
                                                                 src={item.pictures[0].url}
                                                                 threshold={500}
                                                                 width="80"

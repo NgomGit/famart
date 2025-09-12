@@ -17,7 +17,6 @@ export default function Login() {
         if(user){
             let uid = user.uid
             getUserByUID(uid, (userDetails)=>{
-                console.log("User details is ", userDetails)
                 if(userDetails?.displayName == null){
                     router.push({
                         pathname:'/pages/account'
@@ -44,17 +43,14 @@ export default function Login() {
 
     const logInUser = () => {
         const {email, password } = currentUser
-        console.log("Email and password are ", email, password)
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 // Signed in
                 const user = userCredential.user;
-                console.log("User log in is ", user)
             })
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
-                console.log("User log in error is ",errorCode)
                 if(errorCode === "auth/invalid-credential"){
                     setErrorMessage("Email ou mot de passe incorrect")
                 }else{
@@ -69,7 +65,6 @@ export default function Login() {
             .then((userCredential) => {
                 // Signed up
                 const user = userCredential.user;
-                console.log("Sign in user ", user)
                 const usr = {
                     uid: user.uid,
                     email: email,
@@ -86,7 +81,6 @@ export default function Login() {
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
-                console.log("Sign in user error ", errorMessage, errorCode)
                 // ..
             });
     }

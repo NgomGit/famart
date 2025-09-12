@@ -92,7 +92,7 @@ function ProductDetailOne ( props ) {
     function onAddCartClick ( e ) {
         e.preventDefault();
 
-        console.log("product clicked is ", product)
+        //console.log("product clicked is ", product)
 
         if ( product.sku > 0  ) {
             // && !e.currentTarget.classList.contains( 'disabled' )

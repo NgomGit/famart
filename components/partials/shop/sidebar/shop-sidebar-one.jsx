@@ -117,7 +117,7 @@ function ShopSidebarOne ( props ) {
     // }
 
     function filterByCategory ( selected ) {
-        console.log("Selected ", selected)
+        //console.log("Selected ", selected)
         setSelectedCats(selected)
         router.push( router.pathname.replace( '[grid]', query.grid ) + '?category=' + (selected !== "default" ?selected : ''));
     }

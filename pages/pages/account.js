@@ -19,7 +19,7 @@ export default function Account() {
             // User is signed in, see docs for a list of available properties
             // https://firebase.google.com/docs/reference/js/auth.user
             const uid = user.uid;
-            console.log("onAuthStateChanged:::: ", user)
+            //console.log("onAuthStateChanged:::: ", user)
             setCurrentUser(user)
             // ...
         } else {
@@ -34,7 +34,7 @@ export default function Account() {
         if(currentUser?.uid){
             let uid = currentUser.uid
             getUserByUID(uid, (details)=>{
-                console.log("user details are ", details)
+                //console.log("user details are ", details)
                 setUserDetails(details)
             })
         }
@@ -74,7 +74,7 @@ export default function Account() {
     }
 
     const updateCurrentUserInformations = () => {
-        console.log("user details to update is ", userDetails)
+        //console.log("user details to update is ", userDetails)
 
         updateUserDetails(userDetails.ref, userDetails, (data)=>{})
     }

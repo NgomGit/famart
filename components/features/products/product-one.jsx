@@ -58,9 +58,8 @@ function ProductOne(props) {
             <figure>
                 <ALink href={`/product/${link}/${product.ref}`}>
                     <div className="lazy-overlay"></div>
-
                     <LazyLoadImage
-                        alt="product"
+                        alt={product.short_desc}
                         src={product.pictures[0].url}
                         threshold={500}
                         effect="black and white"
@@ -70,7 +69,7 @@ function ProductOne(props) {
                     {
                         product.pictures.length >= 2 ?
                             <LazyLoadImage
-                                alt="product"
+                                alt={product.short_desc}
                                 src={product.pictures[1].url}
                                 threshold={500}
                                 effect="black and white"

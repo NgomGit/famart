@@ -51,11 +51,11 @@ function CheckOut ( { cartList } ) {
     },[currentUser])
 
     useEffect(()=>{
-       console.log("Query received is ", JSON.stringify(query))
+       //console.log("Query received is ", JSON.stringify(query))
        if(query?.paymentStatus){
         const {paymentStatus, ref} = query
         updateUserPayment(ref, paymentStatus, (result)=>{
-            console.log('Payment result is ', result)
+            //console.log('Payment result is ', result)
             handlePaymentStatus(paymentStatus)
         })
 
@@ -86,7 +86,7 @@ function CheckOut ( { cartList } ) {
     }
 
     const navigateToPath = (pathName) =>{
-        console.log(" I was cliqued")
+        //console.log(" I was cliqued")
         router.push({
             pathname: pathName
         })
