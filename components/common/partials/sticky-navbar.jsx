@@ -20,19 +20,19 @@ function StickyNavbar ( { cartItems } ) {
                 <ALink href="/"><i className="icon-home"></i>Home</ALink>
             </div>
             <div className="sticky-info">
-                <ALink href="/shop" className=""><i className="icon-bars"></i>Categories</ALink>
+                <ALink href="/shop" className=""><i className="icon-bars"></i>Produits</ALink>
             </div>
             <div className="sticky-info">
-                <ALink href="/pages/wishlist" className=""><i className="icon-wishlist-2"></i>Wishlist</ALink>
+                <ALink href="/pages/wishlist" className=""><i className="icon-wishlist-2"></i>Favoris</ALink>
             </div>
             <div className="sticky-info">
-                <ALink href="/pages/login" className=""><i className="icon-user-2"></i>Account</ALink>
+                <ALink href="/pages/login" className=""><i className="icon-user-2"></i>Mon Compte</ALink>
             </div>
             <div className="sticky-info">
                 <ALink href="/pages/cart" className="">
                     <i className="icon-shopping-cart position-relative">
                         <span className="cart-count badge-circle">{ getQtyTotal( cartItems ) }</span>
-                    </i>Cart
+                    </i>Mon panier
                 </ALink>
             </div>
         </div>

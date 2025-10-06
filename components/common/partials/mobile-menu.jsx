@@ -57,61 +57,12 @@ function MobileMenu ( { router } ) {
                             </li>
                             <li className={ pathname.startsWith( '/shop' ) ? 'active' : '' }>
                                 {
-                                    <SlideToggle collapsed={ true }>
-                                        { ( { onToggle, setCollapsibleElement, toggleState } ) => (
-                                            <>
-                                                <ALink href="/shop" className={ `${ toggleState.toLowerCase() }` }>Categories<span className="mmenu-btn" onClick={ e => { e.preventDefault(); onToggle(); } }></span></ALink>
-
-                                                <ul ref={ setCollapsibleElement }>
-                                                    <li>
-                                                        <SlideToggle collapsed={ true }>
-                                                            { ( { onToggle, setCollapsibleElement, toggleState } ) => (
-                                                                <>
-                                                                    <ALink href="#" className={ `${ toggleState.toLowerCase() }` }>VARIATION 1
-                                                                    <span className="mmenu-btn" onClick={ e => { e.preventDefault(); onToggle(); } }></span>
-                                                                    </ALink>
-                                                                    <ul ref={ setCollapsibleElement }>
-                                                                        {
-                                                                            mainMenu.shop.variation1.map( ( variations, index ) => (
-                                                                                <li key={ "menu-item" + index }>
-                                                                                    <ALink href={ `${ variations.url }` }>{ variations.title }</ALink>
-                                                                                </li>
-                                                                            ) )
-                                                                        }
-                                                                    </ul>
-                                                                </>
-                                                            ) }
-                                                        </SlideToggle>
-                                                    </li>
-
-                                                    <li>
-                                                        <SlideToggle collapsed={ true }>
-                                                            { ( { onToggle, setCollapsibleElement, toggleState } ) => (
-                                                                <>
-                                                                    <ALink href="#" className={ `${ toggleState.toLowerCase() }` }>VARIATION 2
-                                                                    <span className="mmenu-btn" onClick={ e => { e.preventDefault(); onToggle(); } }></span>
-                                                                    </ALink>
-                                                                    <ul ref={ setCollapsibleElement }>
-                                                                        {
-                                                                            mainMenu.shop.variation2.map( ( variations, index ) => (
-                                                                                <li key={ "menu-item" + index }>
-                                                                                    <ALink href={ `${ variations.url }` }>{ variations.title }</ALink>
-                                                                                </li>
-                                                                            ) )
-                                                                        }
-                                                                    </ul>
-                                                                </>
-                                                            ) }
-                                                        </SlideToggle>
-                                                    </li>
-                                                </ul>
-                                            </>
-                                        ) }
-                                    </SlideToggle>
+                                
+                                    <ALink href="/shop" >Produits</ALink>
                                 }
                             </li>
 
-                            <li className={ pathname.startsWith( '/product' ) ? 'active' : '' }>
+                            {/* <li className={ pathname.startsWith( '/product' ) ? 'active' : '' }>
                                 {
                                     <SlideToggle collapsed={ true }>
                                         { ( { onToggle, setCollapsibleElement, toggleState } ) => (
@@ -165,42 +116,26 @@ function MobileMenu ( { router } ) {
                                         ) }
                                     </SlideToggle>
                                 }
-                            </li>
+                            </li> */}
 
-                            <li className={ isOtherPage() ? 'active' : '' }>
-                                <SlideToggle collapsed={ true }>
-                                    { ( { onToggle, setCollapsibleElement, toggleState } ) => (
-                                        <>
-                                            <a href="#" className={ `${ toggleState.toLowerCase() }` } onClick={ e => { e.preventDefault(); onToggle(); } }>Pages<span className="mmenu-btn"></span></a>
-                                            <ul ref={ setCollapsibleElement }>
-                                                <li><ALink href="/pages/wishlist">Wishlist</ALink></li>
-                                                <li><ALink href="/pages/cart">Shopping Cart</ALink></li>
-                                                <li><ALink href="/pages/checkout">Checkout</ALink></li>
-                                                <li><ALink href="/pages/account">Dashboard</ALink></li>
-                                                <li><ALink href="/pages/login">Login</ALink></li>
-                                                <li><ALink href="/pages/forgot-password">Forgot Password</ALink></li>
-                                            </ul>
-                                        </>
-                                    ) }
-                                </SlideToggle>
-                            </li>
 
-                            <li><ALink href="/pages/blog">Blog</ALink></li>
-                            <li><ALink href="/pages/about-us">About Us</ALink></li>
+
+                            {/* <li><ALink href="/pages/blog">Blog</ALink></li> */}
+                            <li><ALink href="/pages/about-us">Apropos de nous</ALink></li>
                         </ul>
 
-                        <ul className="mobile-menu mt-2 mb-2">
+                        {/* <ul className="mobile-menu mt-2 mb-2">
                             <li className="border-0"><ALink href="#">Special Offer!</ALink></li>
                             <li className="border-0"><a href="https://1.envato.market/DdLk5" target="_blank">Buy Porto!<span className="tip tip-hot">Hot</span></a></li>
-                        </ul>
+                        </ul> */}
 
                         <ul className="mobile-menu">
-                            <li><ALink href="/pages/account">My Account</ALink></li>
-                            <li><ALink href="/pages/contact-us">Contact Us</ALink></li>
-                            <li><ALink href="/pages/blog">Blog</ALink></li>
-                            <li><ALink href="/pages/wishlist">My Wishlist</ALink></li>
-                            <li><ALink href="/pages/cart">Cart</ALink></li>
-                            <li><ALink href="/pages/login" className="login-link">Log In</ALink></li>
+                            {/* <li><ALink href="/pages/account">Mon Compte</ALink></li> */}
+                            <li><ALink href="/pages/contact-us">Contact Nous</ALink></li>
+                            {/* <li><ALink href="/pages/blog">Blog</ALink></li> */}
+                            <li><ALink href="/pages/wishlist">Mes favoris</ALink></li>
+                            <li><ALink href="/pages/cart">Mon panier</ALink></li>
+                            <li><ALink href="/pages/login" className="login-link">Se connecter</ALink></li>
                         </ul>
                     </nav>
 

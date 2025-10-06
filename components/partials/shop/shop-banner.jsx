@@ -17,7 +17,7 @@ export default function ShopBanner(props) {
 
     return (
         <div className={`category-banner parallax ${hasgap ? 'mb-2 mt-0' : ''}`}
-            style={{ backgroundImage: 'url(images/home/banners/parallax_bg.png)' }}>
+            style={{ backgroundImage: 'url(/images/home/banners/parallax_bg.png)' }}>
             <div className="promo-content d-sm-flex align-items-center justify-content-center">
                 <div>
                     <h2 className="m-b-1">Chez Fama arts, c'est jusqu'à plus de</h2>

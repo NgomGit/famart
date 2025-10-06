@@ -13,6 +13,7 @@ import ProductNav from '../product-nav';
 import Qty from '../qty';
 import ALink from '../../../common/ALink';
 import CountDown from '../../../features/countdown';
+import ContactMeButton from '../../../features/utils/contact-me';
 
 function ProductDetailOne ( props ) {
     const router = useRouter();
@@ -392,7 +393,9 @@ function ProductDetailOne ( props ) {
                         <a href="#" className={ `btn btn-dark add-cart shopping-cart mr-2 ${ attrs.sizes.length > 0 || attrs.colors.length > 0 ? 'disabled' : '' }` } title="Add To Cart" onClick={ onAddCartClick }>Add to Cart</a>
                     </div>
 
-                    <hr className="divider mb-0 mt-0" />
+                    <hr className="divider mb-2 mt-0" />
+
+                    <ContactMeButton ImageUrl={ product.pictures[ 0 ].url } />
 
                     <div className="product-single-share mb-3">
                         <label className="sr-only">Share:</label>

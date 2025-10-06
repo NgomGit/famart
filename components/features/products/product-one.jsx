@@ -10,6 +10,8 @@ import { actions as ModalAction } from "../../../store/modal";
 
 // Import Custom Component
 import ALink from '../../common/ALink';
+import ContactMeButton from '../utils/contact-me';
+
 
 function ProductOne(props) {
     const router = useRouter();
@@ -145,6 +147,9 @@ function ProductOne(props) {
                                 </>
                     }
                 </div>
+                {/* <div className="bg-dark d-flex flex-grow-1 "> */}
+                    <ContactMeButton ImageUrl={product.pictures[0].url} />
+                {/* </div> */}
             </div>
         </div>
     )

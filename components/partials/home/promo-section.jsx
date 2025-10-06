@@ -18,7 +18,7 @@ function PromoSection () {
     }, [] )
 
     return (
-        <div className="promo-section overflow-hidden parallax mb-5" style={ { backgroundImage: "url(images/home/banners/parallax_bg.png)" } }>
+        <div className="promo-section overflow-hidden parallax mb-5" style={ { backgroundImage: "url(/images/home/banners/parallax_bg.png)" } }>
             <div className="promo-content">
                 <Reveal keyframes={ fadeInUpShorter } delay={ 200 } duration={ 1000 } triggerOnce>
                     <h2 className="m-b-1">
