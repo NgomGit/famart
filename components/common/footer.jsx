@@ -19,7 +19,7 @@ function Footer () {
                                     <li>
                                         <i className="icon-phone-1"></i>
                                         <span className="contact-info-label">Téléphone</span><a href="tel:">(+221)
-                                            77 424 24 00</a>
+                                            78 424 24 00</a>
                                     </li>
                                     <li>
                                         <i className="icon-envolope"></i>
