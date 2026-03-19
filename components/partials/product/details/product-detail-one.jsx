@@ -93,9 +93,9 @@ function ProductDetailOne ( props ) {
     function onAddCartClick ( e ) {
         e.preventDefault();
 
-        //console.log("product clicked is ", product)
+        // console.log("product clicked is ", product)
 
-        if ( product.sku > 0  ) {
+        // if ( product.sku > 0  ) {
             // && !e.currentTarget.classList.contains( 'disabled' )
             props.addToCart( product, qty, -1 );
             // if ( product.variants.length === 0 ) {
@@ -103,7 +103,7 @@ function ProductDetailOne ( props ) {
             // } else {
             //     props.addToCart( product, qty, variant.id );
             // }
-        }
+        // }
     }
 
     function changeQty ( value ) {
